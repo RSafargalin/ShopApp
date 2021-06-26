@@ -10,11 +10,11 @@ import Alamofire
 
 class RequestFactory {
     
-    func makeErrorParser() -> AbstractErrorParser {
+    private func makeErrorParser() -> AbstractErrorParser {
         return ErrorParser()
     }
     
-    lazy var commonSession: Session = {
+    private lazy var commonSession: Session = {
         let configuration = URLSessionConfiguration.default
         configuration.httpShouldSetCookies = false
         configuration.headers = .default
@@ -22,10 +22,11 @@ class RequestFactory {
         return manager
     }()
     
-    let sessionQueue = DispatchQueue.global(qos: .utility)
+    private let sessionQueue = DispatchQueue.global(qos: .utility)
     
-    func makeAuthRequestFatory() -> AuthRequestFactory {
+    func makePersonalAreaRequestFatory() -> PersonalAreaRequestFactory {
         let errorParser = makeErrorParser()
-        return Auth(errorParser: errorParser, sessionManager: commonSession, queue: sessionQueue)
+        return PersonalArea(errorParser: errorParser, sessionManager: commonSession, queue: sessionQueue)
     }
+    
 }

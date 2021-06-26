@@ -17,9 +17,15 @@
 		FE103AA3268221420096DBE8 /* RequestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE103AA2268221420096DBE8 /* RequestRouter.swift */; };
 		FE103AA5268221690096DBE8 /* LoginResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE103AA4268221690096DBE8 /* LoginResult.swift */; };
 		FE103AA7268221720096DBE8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE103AA6268221720096DBE8 /* User.swift */; };
-		FE103AAA268221E10096DBE8 /* AuthRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE103AA9268221E10096DBE8 /* AuthRequestFactory.swift */; };
-		FE103AAC268221F20096DBE8 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE103AAB268221F20096DBE8 /* Auth.swift */; };
+		FE103AAA268221E10096DBE8 /* PersonalAreaRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE103AA9268221E10096DBE8 /* PersonalAreaRequestFactory.swift */; };
+		FE103AAC268221F20096DBE8 /* PersonalArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE103AAB268221F20096DBE8 /* PersonalArea.swift */; };
 		FE103AAF268222250096DBE8 /* RequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE103AAE268222250096DBE8 /* RequestFactory.swift */; };
+		FE103AB62685FEDC0096DBE8 /* DefaultResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE103AB52685FEDC0096DBE8 /* DefaultResult.swift */; };
+		FE103ABA2685FFE00096DBE8 /* LogoutResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE103AB92685FFE00096DBE8 /* LogoutResult.swift */; };
+		FE103ABC2686052C0096DBE8 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE103ABB2686052C0096DBE8 /* Constant.swift */; };
+		FE103ABF268608700096DBE8 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE103ABE268608700096DBE8 /* UserData.swift */; };
+		FE103AC12686156E0096DBE8 /* CheckInResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE103AC02686156E0096DBE8 /* CheckInResult.swift */; };
+		FE103AC3268615B30096DBE8 /* ChangeDataResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE103AC2268615B30096DBE8 /* ChangeDataResult.swift */; };
 		FE820000267E082E008DDA1E /* ShopAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE82FFFF267E082E008DDA1E /* ShopAppUITests.swift */; };
 		FE82FFDE267E082D008DDA1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE82FFDD267E082D008DDA1E /* AppDelegate.swift */; };
 		FE82FFE0267E082D008DDA1E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE82FFDF267E082D008DDA1E /* SceneDelegate.swift */; };
@@ -62,9 +68,15 @@
 		FE103AA2268221420096DBE8 /* RequestRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestRouter.swift; sourceTree = "<group>"; };
 		FE103AA4268221690096DBE8 /* LoginResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResult.swift; sourceTree = "<group>"; };
 		FE103AA6268221720096DBE8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		FE103AA9268221E10096DBE8 /* AuthRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequestFactory.swift; sourceTree = "<group>"; };
-		FE103AAB268221F20096DBE8 /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
+		FE103AA9268221E10096DBE8 /* PersonalAreaRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalAreaRequestFactory.swift; sourceTree = "<group>"; };
+		FE103AAB268221F20096DBE8 /* PersonalArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalArea.swift; sourceTree = "<group>"; };
 		FE103AAE268222250096DBE8 /* RequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestFactory.swift; sourceTree = "<group>"; };
+		FE103AB52685FEDC0096DBE8 /* DefaultResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultResult.swift; sourceTree = "<group>"; };
+		FE103AB92685FFE00096DBE8 /* LogoutResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutResult.swift; sourceTree = "<group>"; };
+		FE103ABB2686052C0096DBE8 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		FE103ABE268608700096DBE8 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		FE103AC02686156E0096DBE8 /* CheckInResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInResult.swift; sourceTree = "<group>"; };
+		FE103AC2268615B30096DBE8 /* ChangeDataResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeDataResult.swift; sourceTree = "<group>"; };
 		FE820001267E082E008DDA1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE82FFDA267E082D008DDA1E /* ShopApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShopApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE82FFDD267E082D008DDA1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -133,12 +145,8 @@
 		FE103A9726821EBE0096DBE8 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				FE103AB02685F3530096DBE8 /* Core */,
 				FE103AA8268221990096DBE8 /* BusinessLogic */,
-				FE103A9826821EC60096DBE8 /* AbstractErrorParser.swift */,
-				FE103A9A26821EE10096DBE8 /* ErrorParser.swift */,
-				FE103A9D26821F110096DBE8 /* DataRequest.swift */,
-				FE103AA0268221220096DBE8 /* AbstractRequestFactory.swift */,
-				FE103AA2268221420096DBE8 /* RequestRouter.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -146,11 +154,59 @@
 		FE103AA8268221990096DBE8 /* BusinessLogic */ = {
 			isa = PBXGroup;
 			children = (
-				FE103AA9268221E10096DBE8 /* AuthRequestFactory.swift */,
-				FE103AAB268221F20096DBE8 /* Auth.swift */,
+				FE103AB12685F3AF0096DBE8 /* Protocols */,
+				FE103AAB268221F20096DBE8 /* PersonalArea.swift */,
 				FE103AAE268222250096DBE8 /* RequestFactory.swift */,
 			);
 			path = BusinessLogic;
+			sourceTree = "<group>";
+		};
+		FE103AB02685F3530096DBE8 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				FE103A9826821EC60096DBE8 /* AbstractErrorParser.swift */,
+				FE103A9A26821EE10096DBE8 /* ErrorParser.swift */,
+				FE103A9D26821F110096DBE8 /* DataRequest.swift */,
+				FE103AA0268221220096DBE8 /* AbstractRequestFactory.swift */,
+				FE103AA2268221420096DBE8 /* RequestRouter.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		FE103AB12685F3AF0096DBE8 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				FE103AA9268221E10096DBE8 /* PersonalAreaRequestFactory.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		FE103AB72685FF530096DBE8 /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				FE103AB82685FFD30096DBE8 /* Base */,
+				FE103AA4268221690096DBE8 /* LoginResult.swift */,
+				FE103AB92685FFE00096DBE8 /* LogoutResult.swift */,
+				FE103AC02686156E0096DBE8 /* CheckInResult.swift */,
+				FE103AC2268615B30096DBE8 /* ChangeDataResult.swift */,
+			);
+			path = Result;
+			sourceTree = "<group>";
+		};
+		FE103AB82685FFD30096DBE8 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				FE103AB52685FEDC0096DBE8 /* DefaultResult.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		FE103ABD2686081C0096DBE8 /* Query */ = {
+			isa = PBXGroup;
+			children = (
+				FE103ABE268608700096DBE8 /* UserData.swift */,
+			);
+			path = Query;
 			sourceTree = "<group>";
 		};
 		FE82000D267E0BA7008DDA1E /* App */ = {
@@ -176,7 +232,8 @@
 		FE82000F267E0BB5008DDA1E /* Entity */ = {
 			isa = PBXGroup;
 			children = (
-				FE103AA4268221690096DBE8 /* LoginResult.swift */,
+				FE103ABD2686081C0096DBE8 /* Query */,
+				FE103AB72685FF530096DBE8 /* Result */,
 				FE103AA6268221720096DBE8 /* User.swift */,
 			);
 			path = Entity;
@@ -199,6 +256,7 @@
 		FE820012267E0BCB008DDA1E /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				FE103ABB2686052C0096DBE8 /* Constant.swift */,
 				FE103A9726821EBE0096DBE8 /* Network */,
 			);
 			path = Core;
@@ -511,12 +569,18 @@
 			files = (
 				FE103AAF268222250096DBE8 /* RequestFactory.swift in Sources */,
 				FE103A9926821EC60096DBE8 /* AbstractErrorParser.swift in Sources */,
+				FE103AC3268615B30096DBE8 /* ChangeDataResult.swift in Sources */,
+				FE103AC12686156E0096DBE8 /* CheckInResult.swift in Sources */,
+				FE103ABC2686052C0096DBE8 /* Constant.swift in Sources */,
+				FE103AB62685FEDC0096DBE8 /* DefaultResult.swift in Sources */,
+				FE103ABA2685FFE00096DBE8 /* LogoutResult.swift in Sources */,
 				FE103A9E26821F110096DBE8 /* DataRequest.swift in Sources */,
-				FE103AAA268221E10096DBE8 /* AuthRequestFactory.swift in Sources */,
+				FE103AAA268221E10096DBE8 /* PersonalAreaRequestFactory.swift in Sources */,
 				FE103AA3268221420096DBE8 /* RequestRouter.swift in Sources */,
+				FE103ABF268608700096DBE8 /* UserData.swift in Sources */,
 				FE82FFDE267E082D008DDA1E /* AppDelegate.swift in Sources */,
 				FE103AA5268221690096DBE8 /* LoginResult.swift in Sources */,
-				FE103AAC268221F20096DBE8 /* Auth.swift in Sources */,
+				FE103AAC268221F20096DBE8 /* PersonalArea.swift in Sources */,
 				FE103AA7268221720096DBE8 /* User.swift in Sources */,
 				FE82FFE0267E082D008DDA1E /* SceneDelegate.swift in Sources */,
 				FE103AA1268221220096DBE8 /* AbstractRequestFactory.swift in Sources */,
