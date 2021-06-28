@@ -10,10 +10,55 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    let requestFactory = RequestFactory()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        let personalArea = requestFactory.makePersonalAreaRequestFatory()
+        personalArea.login(userName: "Somebody", password: "mypassword") { response in
+            switch response.result {
+            case .success(let login):
+                print(login)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
+        Dispatch.sleep(2)
+        
+        personalArea.logout(userId: 123) { response in
+            switch response.result {
+            case .success(let logout):
+                print(logout)
+                
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
+        Dispatch.sleep(2)
+        
+        let userData = UserData(userId: 12, username: "geekbrains", password: "password", email: "geekbrains@mail.com", gender: "m", creditCard: "none", bio: "none")
+        personalArea.checkIn(userData: userData) { response in
+            switch response.result {
+            case .success(let checkIn):
+                print(checkIn)
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
+        Dispatch.sleep(2)
+        
+        personalArea.changeData(userData: userData) { response in
+            switch response.result {
+            case .success(let changeData):
+                print(changeData)
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
         return true
     }
 
