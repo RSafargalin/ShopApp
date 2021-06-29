@@ -13,7 +13,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let requestFactory = RequestFactory()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let personalArea = requestFactory.makePersonalAreaRequestFatory()
+
+        // MARK: Personal Area
+        let personalArea: PersonalArea = requestFactory.fetchRequestFactory()
         personalArea.login(userName: "Somebody", password: "mypassword") { response in
             switch response.result {
             case .success(let login):
@@ -54,6 +56,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             switch response.result {
             case .success(let changeData):
                 print(changeData)
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
+        Dispatch.sleep(2)
+        
+        // MARK: Catalog
+    
+        let catalog: Catalog = requestFactory.fetchRequestFactory()
+        
+        catalog.fetchAll { response in
+            switch response.result {
+            case .success(let products):
+                print(products)
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
+        Dispatch.sleep(2)
+        
+        catalog.fetchProduct(for: 123) { response in
+            switch response.result {
+            case .success(let product):
+                print(product)
                 
             case .failure(let error):
                 print(error)

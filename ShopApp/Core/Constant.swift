@@ -8,6 +8,9 @@
 import Foundation
 
 struct Constant {
+    
+    // MARK: Personal Area
+    
     enum PersonalArea {
         static let baseUrl: URL = URL(string: "https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/")!
         
@@ -38,4 +41,21 @@ struct Constant {
         }
     }
     
+    // MARK: Catalog
+    
+    enum Catalog {
+        static let baseUrl: URL = URL(string: "https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/")!
+        
+        enum Products {
+            static let path: String = "catalogData.json"
+        }
+        
+        enum Product {
+            static let path: String = "getGoodById.json"
+        }
+        
+        enum Parameters {
+            static let id: String = "id_product"
+        }
+    }
 }

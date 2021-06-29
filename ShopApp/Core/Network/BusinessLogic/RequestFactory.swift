@@ -29,4 +29,14 @@ class RequestFactory {
         return PersonalArea(errorParser: errorParser, sessionManager: commonSession, queue: sessionQueue)
     }
     
+    func makeCatalogRequestFatory() -> CatalogRequestFactory {
+        let errorParser = makeErrorParser()
+        return Catalog(errorParser: errorParser, sessionManager: commonSession, queue: sessionQueue)
+    }
+    
+    func fetchRequestFactory<FactoryType:AbstractRequestFactory>() -> FactoryType {
+        let errorParser = makeErrorParser()
+        return FactoryType(errorParser: errorParser, sessionManager: commonSession, queue: sessionQueue)
+    }
+    
 }

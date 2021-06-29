@@ -8,10 +8,12 @@
 import Foundation
 import Alamofire
 
-protocol AbstractRequestFactory {
+protocol AbstractRequestFactory: AnyObject {
     var errorParser: AbstractErrorParser { get }
     var sessionManager: Session { get }
     var queue: DispatchQueue { get }
+    
+    init(errorParser: AbstractErrorParser, sessionManager: Session, queue: DispatchQueue)
     
     @discardableResult
     func request<T: Decodable>(
