@@ -7,16 +7,49 @@
 
 import Foundation
 
-struct User: Codable {
-    let id: Int
-    let login: String
-    let name: String
-    let lastname: String
+protocol UserDataProtocol: Codable {
     
-    enum CodingKeys: String, CodingKey {
-        case id = "id_user"
-        case login = "user_login"
-        case name = "user_name"
-        case lastname = "user_lastname"
-    }
+    /// Имя пользователя
+    var name: String { get }
+    /// Пароль
+    var password: String { get }
+    /// Email
+    var email: String { get }
+    /// Пол пользователя
+    var gender: Bool { get }
+    /// Номер кредитной карты пользователя
+    var creditCard: String { get }
+    /// Биография пользователя
+    var bio: String { get }
+    
+}
+
+protocol UserProtocol: UserDataProtocol {
+    
+    /// ID пользователя
+    var id: Int { get }
+    
+}
+
+struct UserData: UserDataProtocol {
+    
+    let name: String,
+        password: String,
+        email: String,
+        gender: Bool,
+        creditCard: String,
+        bio: String
+    
+}
+
+struct User: UserProtocol {
+    
+    let id: Int,
+        name: String,
+        password: String,
+        email: String,
+        gender: Bool,
+        creditCard: String,
+        bio: String
+    
 }

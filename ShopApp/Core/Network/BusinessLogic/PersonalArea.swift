@@ -23,23 +23,24 @@ class PersonalArea: AbstractRequestFactory {
 }
 
 extension PersonalArea: PersonalAreaRequestFactory {
-    func login(userName: String, password: String, completionHandler: @escaping (AFDataResponse<LoginResult>) -> Void) {
+    
+    func login(userName: String, password: String, completionHandler: @escaping (AFDataResponse<Response<SignInType>>) -> Void) {
         let requestModel = Login(baseUrl: baseUrl, login: userName, password: password)
         self.request(request: requestModel, completionHandler: completionHandler)
     }
 
-    func logout(userId: Int, completionHandler: @escaping (AFDataResponse<LogoutResult>) -> Void) {
+    func logout(userId: Int, completionHandler: @escaping (AFDataResponse<Response<LogoutType>>) -> Void) {
         let requestModel = Logout(baseUrl: baseUrl, userId: userId)
         self.request(request: requestModel, completionHandler: completionHandler)
     }
     
-    func checkIn(userData: UserData, completionHandler: @escaping (AFDataResponse<CheckInResult>) -> Void) {
-        let requestModel = CheckIn(baseUrl: baseUrl, userData: userData)
+    func checkIn(_ data: UserDataProtocol, completionHandler: @escaping (AFDataResponse<Response<SignUpType>>) -> Void) {
+        let requestModel = CheckIn(baseUrl: baseUrl, userData: data)
         self.request(request: requestModel, completionHandler: completionHandler)
     }
     
-    func changeData(userData: UserData, completionHandler: @escaping (AFDataResponse<ChangeDataResult>) -> Void) {
-        let requestModel = ChangeData(baseUrl: baseUrl, userData: userData)
+    func changeData(_ user: UserProtocol, completionHandler: @escaping (AFDataResponse<Response<ChangeDataType>>) -> Void) {
+        let requestModel = ChangeData(baseUrl: baseUrl, user: user)
         self.request(request: requestModel, completionHandler: completionHandler)
     }
 }
@@ -48,14 +49,14 @@ extension PersonalArea {
     struct Login: RequestRouter {
         let baseUrl: URL
         let method: HTTPMethod = .get
-        let path: String = Constant.PersonalArea.Login.path
+        let path: String = Constant.PersonalArea.SignIn.path.rawValue
         
         let login: String
         let password: String
         var parameters: Parameters? {
             return [
-                Constant.PersonalArea.Parameters.username: login,
-                Constant.PersonalArea.Parameters.password: password
+                Constant.PersonalArea.Parameters.username.rawValue: login,
+                Constant.PersonalArea.Parameters.password.rawValue: password
             ]
         }
     }
@@ -63,50 +64,49 @@ extension PersonalArea {
     struct Logout: RequestRouter {
         let baseUrl: URL
         let method: HTTPMethod = .get
-        let path: String = Constant.PersonalArea.Logout.path
+        let path: String = Constant.PersonalArea.Logout.path.rawValue
         
         let userId: Int
         var parameters: Parameters? {
             return [
-                Constant.PersonalArea.Parameters.userId: userId
+                Constant.PersonalArea.Parameters.id.rawValue: userId
             ]
         }
     }
     
     struct CheckIn: RequestRouter {
         let baseUrl: URL
-        let method: HTTPMethod = .get
-        let path: String = Constant.PersonalArea.CheckIn.path
+        let method: HTTPMethod = .post
+        let path: String = Constant.PersonalArea.SignUp.path.rawValue
         
-        let userData: UserData
+        let userData: UserDataProtocol
         var parameters: Parameters? {
             return [
-                Constant.PersonalArea.Parameters.userId: userData.userId,
-                Constant.PersonalArea.Parameters.username: userData.username,
-                Constant.PersonalArea.Parameters.password: userData.password,
-                Constant.PersonalArea.Parameters.email: userData.email,
-                Constant.PersonalArea.Parameters.gender: userData.gender,
-                Constant.PersonalArea.Parameters.creditCard: userData.creditCard,
-                Constant.PersonalArea.Parameters.bio: userData.bio
+                Constant.PersonalArea.Parameters.username.rawValue: userData.name,
+                Constant.PersonalArea.Parameters.password.rawValue: userData.password,
+                Constant.PersonalArea.Parameters.email.rawValue: userData.email,
+                Constant.PersonalArea.Parameters.gender.rawValue: userData.gender,
+                Constant.PersonalArea.Parameters.creditCard.rawValue: userData.creditCard,
+                Constant.PersonalArea.Parameters.bio.rawValue: userData.bio
             ]
         }
     }
     
     struct ChangeData: RequestRouter {
         let baseUrl: URL
-        let method: HTTPMethod = .get
-        let path: String = Constant.PersonalArea.ChangeData.path
+        let method: HTTPMethod = .post
+        let path: String = Constant.PersonalArea.ChangeData.path.rawValue
         
-        let userData: UserData
+        let user: UserProtocol
         var parameters: Parameters? {
             return [
-                Constant.PersonalArea.Parameters.userId: userData.userId,
-                Constant.PersonalArea.Parameters.username: userData.username,
-                Constant.PersonalArea.Parameters.password: userData.password,
-                Constant.PersonalArea.Parameters.email: userData.email,
-                Constant.PersonalArea.Parameters.gender: userData.gender,
-                Constant.PersonalArea.Parameters.creditCard: userData.creditCard,
-                Constant.PersonalArea.Parameters.bio: userData.bio
+                Constant.PersonalArea.Parameters.id.rawValue: user.id,
+                Constant.PersonalArea.Parameters.username.rawValue: user.name,
+                Constant.PersonalArea.Parameters.password.rawValue: user.password,
+                Constant.PersonalArea.Parameters.email.rawValue: user.email,
+                Constant.PersonalArea.Parameters.gender.rawValue: user.gender,
+                Constant.PersonalArea.Parameters.creditCard.rawValue: user.creditCard,
+                Constant.PersonalArea.Parameters.bio.rawValue: user.bio
             ]
         }
     }

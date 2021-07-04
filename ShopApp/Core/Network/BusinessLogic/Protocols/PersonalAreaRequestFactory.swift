@@ -10,9 +10,9 @@ import Alamofire
 
 protocol PersonalAreaRequestFactory {
     
-    func login(userName: String, password: String, completionHandler: @escaping (AFDataResponse<LoginResult>) -> Void)
-    func logout(userId: Int, completionHandler: @escaping (AFDataResponse<LogoutResult>) -> Void)
-    func checkIn(userData: UserData, completionHandler: @escaping (AFDataResponse<CheckInResult>) -> Void)
-    func changeData(userData: UserData, completionHandler: @escaping (AFDataResponse<ChangeDataResult>) -> Void)
+    func login(userName: String, password: String, completionHandler: @escaping (AFDataResponse<Response<SignInType>>) -> Void)
+    func logout(userId: Int, completionHandler: @escaping (AFDataResponse<Response<LogoutType>>) -> Void)
+    func checkIn(_ data: UserDataProtocol, completionHandler: @escaping (AFDataResponse<Response<SignUpType>>) -> Void)
+    func changeData(_ user: UserProtocol, completionHandler: @escaping (AFDataResponse<Response<ChangeDataType>>) -> Void)
 }
 

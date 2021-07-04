@@ -22,13 +22,13 @@ class Catalog: AbstractRequestFactory {
 }
 
 extension Catalog: CatalogRequestFactory {
-    func fetchAll(completionHandler: @escaping (AFDataResponse<[ProductResult]>) -> Void) {
-        let requestModel = OnlyBasicUrl(baseUrl: baseUrl, path: Constant.Catalog.Products.path)
+    func fetchAll(completionHandler: @escaping (AFDataResponse<Response<ProductsType>>) -> Void) {
+        let requestModel = DefaultQueryData(baseUrl: baseUrl, path: Constant.Catalog.Products.path.rawValue)
         self.request(request: requestModel, completionHandler: completionHandler)
     }
     
-    func fetchProduct(for id: Int, completionHandler: @escaping (AFDataResponse<ProductResult>) -> Void) {
-        let requestModel = FetchProductForId(baseUrl: baseUrl, productId: id)
+    func fetchProduct(for id: Int, completionHandler: @escaping (AFDataResponse<Response<ProductType>>) -> Void) {
+        let requestModel = FetchProductForId(baseUrl: baseUrl, id: id)
         self.request(request: requestModel, completionHandler: completionHandler)
     }
 }
@@ -37,12 +37,12 @@ extension Catalog {
     struct FetchProductForId: RequestRouter {
         let baseUrl: URL
         let method: HTTPMethod = .get
-        let path: String = Constant.Catalog.Product.path
+        let path: String = Constant.Catalog.Product.path.rawValue
         
-        let productId: Int
+        let id: Int
         var parameters: Parameters? {
             return [
-                Constant.Catalog.Parameters.id: productId,
+                Constant.Catalog.Parameters.id.rawValue: id,
             ]
         }
     }

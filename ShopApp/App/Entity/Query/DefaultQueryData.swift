@@ -1,5 +1,5 @@
 //
-//  OnlyBasicUrl.swift
+//  DefaultQueryData.swift
 //  ShopApp
 //
 //  Created by Ruslan Safargalin on 29.06.2021.
@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-class OnlyBasicUrl: RequestRouter {
+class DefaultQueryData: RequestRouter {
     let baseUrl: URL
     let method: HTTPMethod
     let path: String

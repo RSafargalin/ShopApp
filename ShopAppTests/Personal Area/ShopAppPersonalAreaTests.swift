@@ -30,7 +30,7 @@ class ShopAppPersonalAreaTests: XCTestCase {
         safePersonalArea.login(userName: TestConstant.User.username, password: TestConstant.User.password) { response in
             switch response.result {
             case .success(let login):
-                XCTAssertEqual(login.user.id, TestConstant.User.userId)
+                XCTAssertEqual(login.response.user.id, TestConstant.User.id)
                 expectation.fulfill()
                 
             case .failure(let error):
@@ -46,10 +46,10 @@ class ShopAppPersonalAreaTests: XCTestCase {
         let expectation = expectation(description: #function)
         
         
-        safePersonalArea.logout(userId: TestConstant.User.userId) {  response in
+        safePersonalArea.logout(userId: TestConstant.User.id) {  response in
             switch response.result {
             case .success(let logout):
-                XCTAssertEqual(logout.result, TestConstant.Server.Response.goodResultCode)
+                XCTAssertEqual(logout.response.result, TestConstant.Server.Response.goodResultCode)
                 expectation.fulfill()
                 
             case .failure(let error):
@@ -64,18 +64,17 @@ class ShopAppPersonalAreaTests: XCTestCase {
         let safePersonalArea = try fetchSafePersonalAreaRequestFactory()
         let expectation = expectation(description: #function)
         
-        let userData = UserData(userId: TestConstant.User.userId,
-                                username: TestConstant.User.username,
+        let userData = SignUpData(username: TestConstant.User.username,
                                 password: TestConstant.User.password,
                                 email: TestConstant.User.email,
                                 gender: TestConstant.User.gender,
                                 creditCard: TestConstant.User.creditCard,
                                 bio: TestConstant.User.bio)
         
-        safePersonalArea.checkIn(userData: userData) { response in
+        safePersonalArea.checkIn(userData) { response in
             switch response.result {
-            case .success(let checkIn):
-                XCTAssertEqual(checkIn.result, TestConstant.Server.Response.goodResultCode)
+            case .success(let result):
+                XCTAssertEqual(result.response.result, TestConstant.Server.Response.goodResultCode)
                 expectation.fulfill()
                 
             case .failure(let error):
@@ -90,18 +89,18 @@ class ShopAppPersonalAreaTests: XCTestCase {
         let safePersonalArea = try fetchSafePersonalAreaRequestFactory()
         let expectation = expectation(description: #function)
         
-        let userData = UserData(userId: TestConstant.User.userId,
-                                username: TestConstant.User.username,
-                                password: TestConstant.User.password,
-                                email: TestConstant.User.email,
-                                gender: TestConstant.User.gender,
-                                creditCard: TestConstant.User.creditCard,
-                                bio: TestConstant.User.bio)
+        let userData = ChangeQueryData(id: TestConstant.User.id,
+                                       username: TestConstant.User.username,
+                                       password: TestConstant.User.password,
+                                       email: TestConstant.User.email,
+                                       gender: TestConstant.User.gender,
+                                       creditCard: TestConstant.User.creditCard,
+                                       bio: TestConstant.User.bio)
         
-        safePersonalArea.changeData(userData: userData) { response in
+        safePersonalArea.changeData(userData) { response in
             switch response.result {
-            case .success(let changeData):
-                XCTAssertEqual(changeData.result, TestConstant.Server.Response.goodResultCode)
+            case .success(let result):
+                XCTAssertEqual(result.response.result, TestConstant.Server.Response.goodResultCode)
                 expectation.fulfill()
                 
             case .failure(let error):
@@ -121,17 +120,4 @@ class ShopAppPersonalAreaTests: XCTestCase {
             throw error
         }
     }
-
-//    func testExample() throws {
-//        // This is an example of a functional test case.
-//        // Use XCTAssert and related functions to verify your tests produce the correct results.
-//    }
-//
-//    func testPerformanceExample() throws {
-//        // This is an example of a performance test case.
-//        self.measure {
-//            // Put the code you want to measure the time of here.
-//        }
-//    }
-
 }

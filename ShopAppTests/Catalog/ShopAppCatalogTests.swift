@@ -29,10 +29,10 @@ class ShopAppCatalogTests: XCTestCase {
         
         safeCatalog.fetchAll { response in
             switch response.result {
-            case .success(let products):
-                XCTAssertNotEqual(products.count, 0, "Products is empty")
-                XCTAssertNotNil(products.first, "Product first item is nil")
-                XCTAssertEqual(products.first!.name, TestConstant.Product.name)
+            case .success(let result):
+                XCTAssertNotEqual(result.response.products.count, 0, "Products is empty")
+                XCTAssertNotNil(result.response.products.first, "Product first item is nil")
+                XCTAssertEqual(result.response.products.first!.name, TestConstant.Product.name)
                 expectation.fulfill()
                 
             case .failure(let error):
@@ -49,9 +49,9 @@ class ShopAppCatalogTests: XCTestCase {
         
         safeCatalog.fetchProduct(for: TestConstant.Product.id) { response in
             switch response.result {
-            case .success(let product):
-                XCTAssertNotNil(product.result, "Product result is nil")
-                XCTAssertEqual(product.result, TestConstant.Server.Response.goodResultCode)
+            case .success(let result):
+                XCTAssertNotNil(result.response.result, "Product result is nil")
+                XCTAssertEqual(result.response.result, TestConstant.Server.Response.goodResultCode)
                 expectation.fulfill()
                 
             case .failure(let error):
@@ -71,18 +71,4 @@ class ShopAppCatalogTests: XCTestCase {
             throw error
         }
     }
-    
-//
-//    func testExample() throws {
-//        // This is an example of a functional test case.
-//        // Use XCTAssert and related functions to verify your tests produce the correct results.
-//    }
-//
-//    func testPerformanceExample() throws {
-//        // This is an example of a performance test case.
-//        self.measure {
-//            // Put the code you want to measure the time of here.
-//        }
-//    }
-
 }
