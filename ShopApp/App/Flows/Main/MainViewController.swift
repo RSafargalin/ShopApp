@@ -13,19 +13,26 @@ final class MainViewController: UIViewController {
     private let requestFactory = RequestFactory()
     private lazy var personalArea: PersonalArea = requestFactory.fetchRequestFactory()
     private lazy var catalog: Catalog = requestFactory.fetchRequestFactory()
+    private lazy var reviewsManager: ReviewManager = requestFactory.fetchRequestFactory()
+    
     // MARK: Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         
-        login()
-        logout()
-        checkIn()
-        changeData()
-        
-        fetchAllProducts()
-        fetchProductForId()
+//        login()
+//        logout()
+//        checkIn()
+//        changeData()
+
+//        fetchAllProducts()
+//        fetchProductForId()
+
+        fetchReviewsForProduct()
+        addReviewForProduct()
+        sleep(2)
+        removeReviewForProduct()
     }
     
     private func setup() -> Void {
@@ -97,12 +104,55 @@ final class MainViewController: UIViewController {
     }
     
     private func fetchProductForId() {
-        catalog.fetchProduct(for: 1) { response in
+        let productId = 1
+        catalog.fetchProduct(for: productId) { response in
             switch response.result {
             case .success(let product):
 
                 print(product)
 
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    private func fetchReviewsForProduct() {
+        let productId = 1
+        reviewsManager.fetchAllReviews(for: productId) { response in
+            switch response.result {
+            case .success(let result):
+                print(result.response.reviews)
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    private func removeReviewForProduct() {
+        let productId = 1
+        let reviewId = 12
+        reviewsManager.removeReview(with: reviewId, for: productId) { response in
+            switch response.result {
+            case .success(let result):
+                print(result.response)
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    private func addReviewForProduct() {
+        let productId = 1
+        let userId = 1
+        let message = "Good product"
+        reviewsManager.addReview(for: productId, with: userId, and: message) { response in
+            switch response.result {
+            case .success(let result):
+                print(result.response)
+                
             case .failure(let error):
                 print(error)
             }

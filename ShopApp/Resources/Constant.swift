@@ -58,4 +58,30 @@ struct Constant {
             case id = "id"
         }
     }
+    
+    // MARK: ReviewManager
+    
+    enum ReviewManager {
+        static let baseUrl: URL = URL(string: "https://vast-dusk-53457.herokuapp.com/")!
+        
+        enum Parameters: String {
+            case id,
+                 userId,
+                 productId,
+                 message,
+                 reviewId
+        }
+        
+        enum All: String {
+            case path = "reviews.all"
+        }
+        
+        enum Remove: String {
+            case path = "reviews.remove"
+        }
+        
+        enum Add: String {
+            case path = "reviews.add"
+        }
+    }
 }
