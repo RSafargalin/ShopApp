@@ -69,7 +69,8 @@ class ShopAppPersonalAreaTests: XCTestCase {
                                 email: TestConstant.User.StringValues.email.rawValue,
                                 gender: false,
                                 creditCard: TestConstant.User.StringValues.creditCard.rawValue,
-                                bio: TestConstant.User.StringValues.bio.rawValue)
+                                bio: TestConstant.User.StringValues.bio.rawValue,
+                                cart: [:])
         
         safePersonalArea.checkIn(userData) { response in
             switch response.result {
@@ -95,7 +96,8 @@ class ShopAppPersonalAreaTests: XCTestCase {
                             email: TestConstant.User.StringValues.email.rawValue,
                             gender: false,
                             creditCard: TestConstant.User.StringValues.creditCard.rawValue,
-                            bio: TestConstant.User.StringValues.bio.rawValue)
+                            bio: TestConstant.User.StringValues.bio.rawValue,
+                            cart: [:])
         
         safePersonalArea.changeData(userData) { response in
             switch response.result {

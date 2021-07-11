@@ -14,6 +14,7 @@ final class MainViewController: UIViewController {
     private lazy var personalArea: PersonalArea = requestFactory.fetchRequestFactory()
     private lazy var catalog: Catalog = requestFactory.fetchRequestFactory()
     private lazy var reviewsManager: ReviewManager = requestFactory.fetchRequestFactory()
+    private lazy var cartManager: CartManager = requestFactory.fetchRequestFactory()
     
     // MARK: Life Cycle
     
@@ -21,18 +22,33 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         setup()
         
-//        login()
-//        logout()
-//        checkIn()
-//        changeData()
-
+        // Personal Area
+        
+        login()
+        logout()
+        checkIn()
+        changeData()
+        
+        // Catalog
+        
 //        fetchAllProducts()
 //        fetchProductForId()
 
-        fetchReviewsForProduct()
-        addReviewForProduct()
-        sleep(2)
-        removeReviewForProduct()
+        // Reviews
+        
+//        fetchReviewsForProduct()
+//        addReviewForProduct()
+//        removeReviewForProduct()
+        
+        // Cart
+//        sleep(2)
+//        addProductToCart(productId: 1, quantity: 2)
+//        sleep(2)
+//        addProductToCart(productId: 2, quantity: 1)
+//        sleep(2)
+//        removeProductToCart(productId: 2)
+//        sleep(2)
+//        payCart()
     }
     
     private func setup() -> Void {
@@ -44,6 +60,8 @@ final class MainViewController: UIViewController {
             switch response.result {
             case .success(let login):
                 print(login)
+                SessionData.shared.user = login.response.user
+                
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -63,7 +81,7 @@ final class MainViewController: UIViewController {
     }
     
     private func checkIn() {
-        let userData = UserData(name: "geekbrains", password: "password", email: "geekbrains@mail.com", gender: false, creditCard: "none", bio: "none")
+        let userData = UserData(name: "geekbrains", password: "password", email: "geekbrains@mail.com", gender: false, creditCard: "none", bio: "none", cart: [:])
         personalArea.checkIn(userData) { response in
             switch response.result {
             case .success(let checkIn):
@@ -77,7 +95,7 @@ final class MainViewController: UIViewController {
     }
     
     private func changeData() {
-        let user = User(id: 1, name: "geekbrains", password: "password", email: "geekbrains@mail.com", gender: false, creditCard: "none", bio: "none")
+        let user = User(id: 1, name: "geekbrains", password: "password", email: "geekbrains@mail.com", gender: false, creditCard: "none", bio: "none", cart: [:])
         personalArea.changeData(user) { response in
             switch response.result {
             case .success(let changeData):
@@ -159,4 +177,45 @@ final class MainViewController: UIViewController {
         }
     }
     
+    private func addProductToCart(productId: Int, quantity: Int) {
+        
+        cartManager.add(productId: productId, with: quantity) { response in
+            switch response.result {
+            case .success(let result):
+                print(result.response)
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
+    }
+    
+    private func removeProductToCart(productId: Int) {
+        
+        cartManager.remove(productId: productId) { response in
+            switch response.result {
+            case .success(let result):
+                print(result.response)
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
+    }
+    
+    private func payCart() {
+        
+        cartManager.pay() { response in
+            switch response.result {
+            case .success(let result):
+                print(result.response)
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
+    }
 }

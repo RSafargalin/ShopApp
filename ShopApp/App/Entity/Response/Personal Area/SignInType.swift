@@ -9,6 +9,6 @@ import Foundation
 
 struct SignInType: ResponseType, Codable {
     let result: Int
-    let user: ChangeQueryData
+    let user: User
     
 }

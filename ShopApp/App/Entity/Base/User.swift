@@ -21,6 +21,8 @@ protocol UserDataProtocol: Codable {
     var creditCard: String { get }
     /// Биография пользователя
     var bio: String { get }
+    /// Корзина пользователя
+    var cart: [Int : Int] { get }
     
 }
 
@@ -38,7 +40,8 @@ struct UserData: UserDataProtocol {
         email: String,
         gender: Bool,
         creditCard: String,
-        bio: String
+        bio: String,
+        cart: [Int : Int]
     
 }
 
@@ -50,6 +53,7 @@ struct User: UserProtocol {
         email: String,
         gender: Bool,
         creditCard: String,
-        bio: String
+        bio: String,
+        cart: [Int : Int]
     
 }

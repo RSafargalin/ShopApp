@@ -9,14 +9,14 @@ import Foundation
 
 struct Constant {
     
-    // MARK: Personal Area
+    // MARK: - Personal Area
     
     enum PersonalArea {
         static let baseUrl: URL = URL(string: "https://vast-dusk-53457.herokuapp.com/")!
         
         enum Parameters: String {
             case id = "id",
-                 username = "username",
+                 name = "name",
                  password = "password",
                  email = "email",
                  gender = "gender",
@@ -41,7 +41,7 @@ struct Constant {
         }
     }
     
-    // MARK: Catalog
+    // MARK: - Catalog
     
     enum Catalog {
         static let baseUrl: URL = URL(string: "https://vast-dusk-53457.herokuapp.com/")!
@@ -59,7 +59,7 @@ struct Constant {
         }
     }
     
-    // MARK: ReviewManager
+    // MARK: - ReviewManager
     
     enum ReviewManager {
         static let baseUrl: URL = URL(string: "https://vast-dusk-53457.herokuapp.com/")!
@@ -84,4 +84,29 @@ struct Constant {
             case path = "reviews.add"
         }
     }
+    
+    // MARK: - Cart Manager
+    
+    enum CartManager {
+        static let baseUrl: URL = URL(string: "https://vast-dusk-53457.herokuapp.com/")!
+        
+        enum Parameters: String {
+            case productId,
+                 quantity,
+                 userId
+        }
+        
+        enum Add: String {
+            case path = "cart.add"
+        }
+        
+        enum Remove: String {
+            case path = "cart.remove"
+        }
+        
+        enum Pay: String {
+            case path = "cart.pay"
+        }
+    }
+    
 }

@@ -55,7 +55,7 @@ extension PersonalArea {
         let password: String
         var parameters: Parameters? {
             return [
-                Constant.PersonalArea.Parameters.username.rawValue: login,
+                Constant.PersonalArea.Parameters.name.rawValue: login,
                 Constant.PersonalArea.Parameters.password.rawValue: password
             ]
         }
@@ -82,7 +82,7 @@ extension PersonalArea {
         let userData: UserDataProtocol
         var parameters: Parameters? {
             return [
-                Constant.PersonalArea.Parameters.username.rawValue: userData.name,
+                Constant.PersonalArea.Parameters.name.rawValue: userData.name,
                 Constant.PersonalArea.Parameters.password.rawValue: userData.password,
                 Constant.PersonalArea.Parameters.email.rawValue: userData.email,
                 Constant.PersonalArea.Parameters.gender.rawValue: userData.gender,
@@ -101,7 +101,7 @@ extension PersonalArea {
         var parameters: Parameters? {
             return [
                 Constant.PersonalArea.Parameters.id.rawValue: user.id,
-                Constant.PersonalArea.Parameters.username.rawValue: user.name,
+                Constant.PersonalArea.Parameters.name.rawValue: user.name,
                 Constant.PersonalArea.Parameters.password.rawValue: user.password,
                 Constant.PersonalArea.Parameters.email.rawValue: user.email,
                 Constant.PersonalArea.Parameters.gender.rawValue: user.gender,
