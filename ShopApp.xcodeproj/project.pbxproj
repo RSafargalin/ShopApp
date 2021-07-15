@@ -39,6 +39,21 @@
 		FE409E532699BF8300F47907 /* PaingCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE409E522699BF8300F47907 /* PaingCart.swift */; };
 		FE409E552699C48900F47907 /* SessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE409E542699C48900F47907 /* SessionData.swift */; };
 		FE409E59269AEE6300F47907 /* ShopAppCartManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE409E58269AEE6300F47907 /* ShopAppCartManagerTests.swift */; };
+		FE409E62269B127B00F47907 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE409E61269B127B00F47907 /* SignInViewController.swift */; };
+		FE409E6D269C353700F47907 /* DefaultContainerForTextFieldWithLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE409E6C269C353700F47907 /* DefaultContainerForTextFieldWithLabel.swift */; };
+		FE409E6F269C3BBF00F47907 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE409E6E269C3BBF00F47907 /* SignInView.swift */; };
+		FE409E72269C5BE100F47907 /* EButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE409E71269C5BE100F47907 /* EButton.swift */; };
+		FE409E74269C5C1B00F47907 /* EColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE409E73269C5C1B00F47907 /* EColor.swift */; };
+		FE409E76269C5ED000F47907 /* ETextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE409E75269C5ED000F47907 /* ETextField.swift */; };
+		FE409E79269C6D0600F47907 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE409E78269C6D0600F47907 /* SignUpViewController.swift */; };
+		FE409E7C269C6E5B00F47907 /* UITextFieldsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE409E7B269C6E5B00F47907 /* UITextFieldsViewController.swift */; };
+		FE409E7E269C7DFA00F47907 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE409E7D269C7DFA00F47907 /* SignUpView.swift */; };
+		FE516A8B269DA03C0005850E /* ContainerForTextFieldWithLabelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE516A8A269DA03C0005850E /* ContainerForTextFieldWithLabelProtocol.swift */; };
+		FE516A8F269DAB9F0005850E /* DefaultSexSelectionContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE516A8E269DAB9F0005850E /* DefaultSexSelectionContainerView.swift */; };
+		FE516A9226A02EF20005850E /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE516A9126A02EF20005850E /* UserProfileViewController.swift */; };
+		FE516A9426A0303F0005850E /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE516A9326A0303F0005850E /* UserProfileView.swift */; };
+		FE516A9726A03C790005850E /* UserCaretaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE516A9626A03C790005850E /* UserCaretaker.swift */; };
+		FE516A9A26A05F5D0005850E /* UserChangeDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE516A9926A05F5D0005850E /* UserChangeDataViewController.swift */; };
 		FE820000267E082E008DDA1E /* ShopAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE82FFFF267E082E008DDA1E /* ShopAppUITests.swift */; };
 		FE82FFDE267E082D008DDA1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE82FFDD267E082D008DDA1E /* AppDelegate.swift */; };
 		FE82FFE0267E082D008DDA1E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE82FFDF267E082D008DDA1E /* SceneDelegate.swift */; };
@@ -49,7 +64,6 @@
 		FEB3B74F26907EE3001BBC82 /* ProductType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB3B74E26907EE3001BBC82 /* ProductType.swift */; };
 		FEB3B75126908507001BBC82 /* ProductsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB3B75026908507001BBC82 /* ProductsType.swift */; };
 		FEB3B75326908A16001BBC82 /* SignUpData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB3B75226908A16001BBC82 /* SignUpData.swift */; };
-		FEB3B7572690ABDD001BBC82 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB3B7562690ABDD001BBC82 /* MainViewController.swift */; };
 		FEB3B7592691B810001BBC82 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE103AA6268221720096DBE8 /* User.swift */; };
 		FEB3B76326934D17001BBC82 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB3B76226934D17001BBC82 /* Review.swift */; };
 		FEB3B76626934E2B001BBC82 /* ReviewsForProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB3B76526934E2B001BBC82 /* ReviewsForProduct.swift */; };
@@ -120,6 +134,21 @@
 		FE409E522699BF8300F47907 /* PaingCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaingCart.swift; sourceTree = "<group>"; };
 		FE409E542699C48900F47907 /* SessionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionData.swift; sourceTree = "<group>"; };
 		FE409E58269AEE6300F47907 /* ShopAppCartManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopAppCartManagerTests.swift; sourceTree = "<group>"; };
+		FE409E61269B127B00F47907 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		FE409E6C269C353700F47907 /* DefaultContainerForTextFieldWithLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultContainerForTextFieldWithLabel.swift; sourceTree = "<group>"; };
+		FE409E6E269C3BBF00F47907 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		FE409E71269C5BE100F47907 /* EButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EButton.swift; sourceTree = "<group>"; };
+		FE409E73269C5C1B00F47907 /* EColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EColor.swift; sourceTree = "<group>"; };
+		FE409E75269C5ED000F47907 /* ETextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETextField.swift; sourceTree = "<group>"; };
+		FE409E78269C6D0600F47907 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		FE409E7B269C6E5B00F47907 /* UITextFieldsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldsViewController.swift; sourceTree = "<group>"; };
+		FE409E7D269C7DFA00F47907 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		FE516A8A269DA03C0005850E /* ContainerForTextFieldWithLabelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerForTextFieldWithLabelProtocol.swift; sourceTree = "<group>"; };
+		FE516A8E269DAB9F0005850E /* DefaultSexSelectionContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSexSelectionContainerView.swift; sourceTree = "<group>"; };
+		FE516A9126A02EF20005850E /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		FE516A9326A0303F0005850E /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
+		FE516A9626A03C790005850E /* UserCaretaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCaretaker.swift; sourceTree = "<group>"; };
+		FE516A9926A05F5D0005850E /* UserChangeDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserChangeDataViewController.swift; sourceTree = "<group>"; };
 		FE820001267E082E008DDA1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE82FFDA267E082D008DDA1E /* ShopApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShopApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE82FFDD267E082D008DDA1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -348,6 +377,105 @@
 			path = Cart;
 			sourceTree = "<group>";
 		};
+		FE409E5D269B0F0B00F47907 /* Personal Area */ = {
+			isa = PBXGroup;
+			children = (
+				FE516A9826A05F4C0005850E /* User Change Data */,
+				FE516A9026A02ED30005850E /* User Profile */,
+				FE409E77269C6CF600F47907 /* Sign Up */,
+				FE409E5E269B0F0B00F47907 /* Sign In  */,
+			);
+			path = "Personal Area";
+			sourceTree = "<group>";
+		};
+		FE409E5E269B0F0B00F47907 /* Sign In  */ = {
+			isa = PBXGroup;
+			children = (
+				FE409E61269B127B00F47907 /* SignInViewController.swift */,
+				FE409E6E269C3BBF00F47907 /* SignInView.swift */,
+			);
+			path = "Sign In ";
+			sourceTree = "<group>";
+		};
+		FE409E6B269C352C00F47907 /* Flows */ = {
+			isa = PBXGroup;
+			children = (
+				FE516A8D269DA3F00005850E /* Views */,
+				FE516A8C269DA3EB0005850E /* Controllers */,
+				FE409E7A269C6E1900F47907 /* Protocols */,
+			);
+			path = Flows;
+			sourceTree = "<group>";
+		};
+		FE409E70269C5BB400F47907 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FE409E71269C5BE100F47907 /* EButton.swift */,
+				FE409E73269C5C1B00F47907 /* EColor.swift */,
+				FE409E75269C5ED000F47907 /* ETextField.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FE409E77269C6CF600F47907 /* Sign Up */ = {
+			isa = PBXGroup;
+			children = (
+				FE409E78269C6D0600F47907 /* SignUpViewController.swift */,
+				FE409E7D269C7DFA00F47907 /* SignUpView.swift */,
+			);
+			path = "Sign Up";
+			sourceTree = "<group>";
+		};
+		FE409E7A269C6E1900F47907 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				FE516A8A269DA03C0005850E /* ContainerForTextFieldWithLabelProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		FE516A8C269DA3EB0005850E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FE409E7B269C6E5B00F47907 /* UITextFieldsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		FE516A8D269DA3F00005850E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FE409E6C269C353700F47907 /* DefaultContainerForTextFieldWithLabel.swift */,
+				FE516A8E269DAB9F0005850E /* DefaultSexSelectionContainerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FE516A9026A02ED30005850E /* User Profile */ = {
+			isa = PBXGroup;
+			children = (
+				FE516A9126A02EF20005850E /* UserProfileViewController.swift */,
+				FE516A9326A0303F0005850E /* UserProfileView.swift */,
+			);
+			path = "User Profile";
+			sourceTree = "<group>";
+		};
+		FE516A9526A03C6F0005850E /* Caretaker */ = {
+			isa = PBXGroup;
+			children = (
+				FE516A9626A03C790005850E /* UserCaretaker.swift */,
+			);
+			path = Caretaker;
+			sourceTree = "<group>";
+		};
+		FE516A9826A05F4C0005850E /* User Change Data */ = {
+			isa = PBXGroup;
+			children = (
+				FE516A9926A05F5D0005850E /* UserChangeDataViewController.swift */,
+			);
+			path = "User Change Data";
+			sourceTree = "<group>";
+		};
 		FE82000D267E0BA7008DDA1E /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -388,6 +516,7 @@
 		FE820011267E0BC6008DDA1E /* Flows */ = {
 			isa = PBXGroup;
 			children = (
+				FE409E5D269B0F0B00F47907 /* Personal Area */,
 				FEB3B7552690ABCA001BBC82 /* Main */,
 			);
 			path = Flows;
@@ -396,6 +525,9 @@
 		FE820012267E0BCB008DDA1E /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				FE516A9526A03C6F0005850E /* Caretaker */,
+				FE409E6B269C352C00F47907 /* Flows */,
+				FE409E70269C5BB400F47907 /* Extensions */,
 				FE103A9726821EBE0096DBE8 /* Network */,
 			);
 			path = Core;
@@ -765,41 +897,55 @@
 			files = (
 				FE103AAF268222250096DBE8 /* RequestFactory.swift in Sources */,
 				FE409E512699BDC500F47907 /* PaidGoods.swift in Sources */,
-				FEB3B7572690ABDD001BBC82 /* MainViewController.swift in Sources */,
 				FE103A9926821EC60096DBE8 /* AbstractErrorParser.swift in Sources */,
 				FE103AC3268615B30096DBE8 /* ChangeDataType.swift in Sources */,
 				FE103AC12686156E0096DBE8 /* SignUpType.swift in Sources */,
 				FEB3B7592691B810001BBC82 /* User.swift in Sources */,
 				FE409E4A2699B56E00F47907 /* CartManagerRequestFactory.swift in Sources */,
+				FE409E7C269C6E5B00F47907 /* UITextFieldsViewController.swift in Sources */,
 				FE103ABC2686052C0096DBE8 /* Constant.swift in Sources */,
+				FE516A9426A0303F0005850E /* UserProfileView.swift in Sources */,
+				FE409E7E269C7DFA00F47907 /* SignUpView.swift in Sources */,
 				FE103AB62685FEDC0096DBE8 /* ResponseType.swift in Sources */,
 				FE103ABA2685FFE00096DBE8 /* LogoutType.swift in Sources */,
 				FEB3B76326934D17001BBC82 /* Review.swift in Sources */,
+				FE516A9726A03C790005850E /* UserCaretaker.swift in Sources */,
+				FE516A8B269DA03C0005850E /* ContainerForTextFieldWithLabelProtocol.swift in Sources */,
 				FEB3B76826934E6A001BBC82 /* ReviewAdded.swift in Sources */,
 				FE409E532699BF8300F47907 /* PaingCart.swift in Sources */,
 				FEB3B75326908A16001BBC82 /* SignUpData.swift in Sources */,
 				FEB3B76626934E2B001BBC82 /* ReviewsForProduct.swift in Sources */,
 				FE103A9E26821F110096DBE8 /* DataRequest.swift in Sources */,
 				FE103AAA268221E10096DBE8 /* PersonalAreaRequestFactory.swift in Sources */,
+				FE516A9226A02EF20005850E /* UserProfileViewController.swift in Sources */,
 				FE103AA3268221420096DBE8 /* RequestRouter.swift in Sources */,
 				FE103AD5268B253A0096DBE8 /* DefaultQueryData.swift in Sources */,
 				FE409E552699C48900F47907 /* SessionData.swift in Sources */,
 				FE409E482699B46800F47907 /* CartManager.swift in Sources */,
 				FEB3B75126908507001BBC82 /* ProductsType.swift in Sources */,
 				FE103ABF268608700096DBE8 /* ChangeQueryData.swift in Sources */,
+				FE409E74269C5C1B00F47907 /* EColor.swift in Sources */,
 				FE82FFDE267E082D008DDA1E /* AppDelegate.swift in Sources */,
 				FEB3B74F26907EE3001BBC82 /* ProductType.swift in Sources */,
 				FE103AA5268221690096DBE8 /* SignInType.swift in Sources */,
 				FE103ACD268B201F0096DBE8 /* Catalog.swift in Sources */,
 				FE103ACF268B204C0096DBE8 /* CatalogRequestFactory.swift in Sources */,
+				FE516A8F269DAB9F0005850E /* DefaultSexSelectionContainerView.swift in Sources */,
 				FE103AAC268221F20096DBE8 /* PersonalArea.swift in Sources */,
 				FE82FFE0267E082D008DDA1E /* SceneDelegate.swift in Sources */,
 				FE103AA1268221220096DBE8 /* AbstractRequestFactory.swift in Sources */,
 				FEB3B76C26934EA8001BBC82 /* ReviewManager.swift in Sources */,
 				FEB3B76A26934E84001BBC82 /* ReviewRemove.swift in Sources */,
+				FE409E72269C5BE100F47907 /* EButton.swift in Sources */,
 				FE103A9B26821EE10096DBE8 /* ErrorParser.swift in Sources */,
+				FE516A9A26A05F5D0005850E /* UserChangeDataViewController.swift in Sources */,
 				FEB3B76E269350BA001BBC82 /* ReviewManagerRequestFactory.swift in Sources */,
+				FE409E6F269C3BBF00F47907 /* SignInView.swift in Sources */,
+				FE409E62269B127B00F47907 /* SignInViewController.swift in Sources */,
+				FE409E76269C5ED000F47907 /* ETextField.swift in Sources */,
+				FE409E79269C6D0600F47907 /* SignUpViewController.swift in Sources */,
 				FE103AD3268B21A20096DBE8 /* Product.swift in Sources */,
+				FE409E6D269C353700F47907 /* DefaultContainerForTextFieldWithLabel.swift in Sources */,
 				FEB3B74D26907AD5001BBC82 /* Response.swift in Sources */,
 				FE409E4D2699B9BE00F47907 /* ProductAddedToCart.swift in Sources */,
 				FE409E4F2699B9F500F47907 /* ProductRemoveFromCart.swift in Sources */,

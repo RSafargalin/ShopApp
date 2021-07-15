@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Constant {
     
@@ -16,8 +17,10 @@ struct Constant {
         
         enum Parameters: String {
             case id = "id",
-                 name = "name",
+                 username = "username",
                  password = "password",
+                 firstName = "firstName",
+                 surname = "surname",
                  email = "email",
                  gender = "gender",
                  creditCard = "creditCard",
@@ -109,4 +112,16 @@ struct Constant {
         }
     }
     
+    // MARK: - Sizes
+    
+    enum Sizes: CGFloat {
+        case TextField = 44,
+             Label = 20
+    }
+    
+    // MARK: - Margins
+    
+    enum Margins: CGFloat {
+        case TextFieldFromLabel = 15
+    }
 }

@@ -5,6 +5,11 @@
 //  Created by Ruslan Safargalin on 19.06.2021.
 //
 
+/*
+ Автор иконок: DinosoftLabs
+ https://www.flaticon.com/ru/authors/dinosoftlabs
+ */
+
 import UIKit
 
 @main

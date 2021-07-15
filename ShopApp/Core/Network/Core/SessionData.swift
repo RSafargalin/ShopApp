@@ -13,11 +13,12 @@ struct SessionData {
     private init() {}
     
     var user: User = User(id: 1,
-                          name: "LewisHamilton",
+                          username: "LewisHamilton",
                           password: "stillirise",
+                          firstName: "Lewis",
+                          surname: "Hamilton",
                           email: "stub@email.com",
                           gender: false,
                           creditCard: "none",
-                          bio: "none",
                           cart: [:])
 }

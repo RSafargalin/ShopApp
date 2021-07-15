@@ -9,4 +9,5 @@ import Foundation
 
 struct ChangeDataType: ResponseType, Codable {
     let result: Int
+    let user: User
 }

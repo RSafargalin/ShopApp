@@ -81,7 +81,7 @@ final class MainViewController: UIViewController {
     }
     
     private func checkIn() {
-        let userData = UserData(name: "geekbrains", password: "password", email: "geekbrains@mail.com", gender: false, creditCard: "none", bio: "none", cart: [:])
+        let userData = UserData(username: "geekbrains", password: "password", firstName: "Geek", surname: "Brains" email: "geekbrains@mail.com", gender: false, creditCard: "none", bio: "none", cart: [:])
         personalArea.checkIn(userData) { response in
             switch response.result {
             case .success(let checkIn):

@@ -39,7 +39,7 @@ extension PersonalArea: PersonalAreaRequestFactory {
         self.request(request: requestModel, completionHandler: completionHandler)
     }
     
-    func changeData(_ user: UserProtocol, completionHandler: @escaping (AFDataResponse<Response<ChangeDataType>>) -> Void) {
+    func changeData(_ user: ChangeQueryData, completionHandler: @escaping (AFDataResponse<Response<ChangeDataType>>) -> Void) {
         let requestModel = ChangeData(baseUrl: baseUrl, user: user)
         self.request(request: requestModel, completionHandler: completionHandler)
     }
@@ -55,7 +55,7 @@ extension PersonalArea {
         let password: String
         var parameters: Parameters? {
             return [
-                Constant.PersonalArea.Parameters.name.rawValue: login,
+                Constant.PersonalArea.Parameters.username.rawValue: login,
                 Constant.PersonalArea.Parameters.password.rawValue: password
             ]
         }
@@ -82,12 +82,13 @@ extension PersonalArea {
         let userData: UserDataProtocol
         var parameters: Parameters? {
             return [
-                Constant.PersonalArea.Parameters.name.rawValue: userData.name,
+                Constant.PersonalArea.Parameters.username.rawValue: userData.username,
                 Constant.PersonalArea.Parameters.password.rawValue: userData.password,
+                Constant.PersonalArea.Parameters.firstName.rawValue: userData.firstName,
+                Constant.PersonalArea.Parameters.surname.rawValue: userData.surname,
                 Constant.PersonalArea.Parameters.email.rawValue: userData.email,
                 Constant.PersonalArea.Parameters.gender.rawValue: userData.gender,
-                Constant.PersonalArea.Parameters.creditCard.rawValue: userData.creditCard,
-                Constant.PersonalArea.Parameters.bio.rawValue: userData.bio
+                Constant.PersonalArea.Parameters.creditCard.rawValue: userData.creditCard
             ]
         }
     }
@@ -97,17 +98,42 @@ extension PersonalArea {
         let method: HTTPMethod = .post
         let path: String = Constant.PersonalArea.ChangeData.path.rawValue
         
-        let user: UserProtocol
+        let user: ChangeQueryData
         var parameters: Parameters? {
-            return [
-                Constant.PersonalArea.Parameters.id.rawValue: user.id,
-                Constant.PersonalArea.Parameters.name.rawValue: user.name,
-                Constant.PersonalArea.Parameters.password.rawValue: user.password,
-                Constant.PersonalArea.Parameters.email.rawValue: user.email,
-                Constant.PersonalArea.Parameters.gender.rawValue: user.gender,
-                Constant.PersonalArea.Parameters.creditCard.rawValue: user.creditCard,
-                Constant.PersonalArea.Parameters.bio.rawValue: user.bio
-            ]
+            
+            var parameters: [String : Any] = [:]
+            parameters.updateValue(user.id, forKey: Constant.PersonalArea.Parameters.id.rawValue)
+            
+            if let username = user.username {
+                parameters.updateValue(username, forKey: Constant.PersonalArea.Parameters.username.rawValue)
+            }
+            
+            if let password = user.password {
+                parameters.updateValue(password, forKey: Constant.PersonalArea.Parameters.password.rawValue)
+            }
+            
+            if let firstName = user.firstName {
+                parameters.updateValue(firstName, forKey: Constant.PersonalArea.Parameters.firstName.rawValue)
+            }
+            
+            if let surname = user.surname {
+                parameters.updateValue(surname, forKey: Constant.PersonalArea.Parameters.surname.rawValue)
+            }
+            
+            if let email = user.email {
+                parameters.updateValue(email, forKey: Constant.PersonalArea.Parameters.email.rawValue)
+            }
+            
+            if let creditCard = user.creditCard {
+                parameters.updateValue(creditCard, forKey: Constant.PersonalArea.Parameters.creditCard.rawValue)
+            }
+            
+            if let gender = user.gender {
+                parameters.updateValue(gender, forKey: Constant.PersonalArea.Parameters.gender.rawValue)
+            }
+            
+            return parameters
+            
         }
     }
 }
