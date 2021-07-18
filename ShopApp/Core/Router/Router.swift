@@ -37,7 +37,6 @@ class RouterImpl: Router {
         
         switch screen {
         case .SignIn:
-//            controller.navigationController?.popToViewController(SignInViewController(), animated: true)
             show(SignInViewController.self, from: controller, with: displayMode, with: navigationController)
             
         case .SignUp:
@@ -48,9 +47,6 @@ class RouterImpl: Router {
             
         case .UserProfile:
             show(UserProfileViewController.self, from: controller, with: displayMode, with: navigationController)
-            
-        @unknown default:
-            show(SignInViewController.self, from: controller, with: .present, with: true)
         }
         
     }

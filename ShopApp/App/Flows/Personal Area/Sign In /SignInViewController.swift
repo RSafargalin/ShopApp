@@ -54,7 +54,6 @@ final class SignInViewController: UITextFieldsViewController {
     override func setup() {
         
         self.navigationItem.title = "Sign in..."
-        self.navigationController?.navigationBar.prefersLargeTitles = true
         
         let goToSignUpBarButtonItem = UIBarButtonItem(title: "Sign Up",
                                                       style: .plain,

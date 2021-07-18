@@ -51,11 +51,7 @@ class UserProfileViewController: UIViewController {
     
     func setup() {
         
-        let user = SessionData.shared.user
-        self.navigationItem.title = "\(user.firstName) \(user.surname)"
-        
-        contentView.setGender(user.gender)
-        contentView.setCreditCatd(user.creditCard)
+        updateUserData()
         
         let changeDataBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(goToChangeUserData))
         let logoutBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logout))
