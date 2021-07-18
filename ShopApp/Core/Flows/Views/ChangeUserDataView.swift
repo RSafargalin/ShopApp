@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class SignUpView: UIView, ContentView {
+final class ChangeUserDataView: UIView, ContentView {
     
     // MARK: - Public Variables
     

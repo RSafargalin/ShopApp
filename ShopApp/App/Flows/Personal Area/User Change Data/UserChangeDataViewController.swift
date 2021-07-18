@@ -14,16 +14,17 @@ final class UserChangeDataViewController: UITextFieldsViewController {
     
     // MARK: - Private properties
     
+    private let flowsBuilder: FlowsElementBuilder
     private var delegate: UserProfileViewControllerDelegate?
     private let personalArea: PersonalArea
-    private var contentView: SignUpView {
-        return self.view as! SignUpView
+    private var contentView: ChangeUserDataView {
+        return self.view as! ChangeUserDataView
     }
     
     // MARK: - Life cycle
     
     override func loadView() {
-        self.view = SignUpView()
+        self.view = flowsBuilder.buildViewPersonalArea(for: .changeData)
     }
     
     override func viewDidLoad() {
@@ -35,6 +36,7 @@ final class UserChangeDataViewController: UITextFieldsViewController {
     
     init(_ delegate: UserProfileViewControllerDelegate) {
         let requestFactory = RequestFactory()
+        flowsBuilder = FlowsElementBuilder()
         personalArea = requestFactory.fetchRequestFactory()
         self.delegate = delegate
         super.init()
@@ -49,9 +51,7 @@ final class UserChangeDataViewController: UITextFieldsViewController {
     override func setup() {
         
         self.navigationItem.title = "Change user data..."
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationItem.largeTitleDisplayMode = .always
-        contentView.signUpButton.setTitle("Save", for: .normal)
+        
         contentView.signUpButton.addTarget(self, action: #selector(changeData), for: .touchUpInside)
         
         contentView.usernameContainerView.setText(SessionData.shared.user.username)

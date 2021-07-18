@@ -10,10 +10,14 @@ import UIKit
 
 extension UIButton {
     
+    // MARK: Enums
+    
     enum ButtonState {
         case enabled,
              disabled
     }
+    
+    // MARK: Public methods
     
     func set(_ state: ButtonState, enabledColor: UIColor = .accentColor, disabledColor: UIColor = .darkGray) {
         

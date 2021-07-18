@@ -16,6 +16,7 @@ class UserProfileViewController: UIViewController {
 
     // MARK: - Private properties
     
+    private lazy var router: Router = RouterImpl(for: self)
     private let personalArea: PersonalArea
     private var contentView: UserProfileView {
         return self.view as! UserProfileView
@@ -52,9 +53,6 @@ class UserProfileViewController: UIViewController {
         
         let user = SessionData.shared.user
         self.navigationItem.title = "\(user.firstName) \(user.surname)"
-        self.navigationItem.largeTitleDisplayMode = .always
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationItem.prompt = user.username
         
         contentView.setGender(user.gender)
         contentView.setCreditCatd(user.creditCard)
@@ -68,22 +66,19 @@ class UserProfileViewController: UIViewController {
     }
     
     @objc private func goToChangeUserData() {
-        
-        let controller = UserChangeDataViewController(self)
-        self.navigationController?.pushViewController(controller, animated: true)
-        
+        router.show(screen: .ChangeData, with: .push, with: false)
     }
     
     @objc private func logout() {
         
         self.navigationItem.leftBarButtonItem?.isEnabled = false
-        personalArea.logout(userId: SessionData.shared.user.id) { response in
+        personalArea.logout(userId: SessionData.shared.user.id) { [weak self] response in
             DispatchQueue.main.async {
-                self.navigationItem.leftBarButtonItem?.isEnabled = true
+                self?.navigationItem.leftBarButtonItem?.isEnabled = true
                 switch response.result {
                 case .success(_):
-                    let controller = SignInViewController()
-                    self.navigationController?.setViewControllers([controller], animated: true)
+                    self?.router.show(screen: .SignIn, with: .set, with: false)
+                    
                     
                 case .failure(let error):
                     print(error)

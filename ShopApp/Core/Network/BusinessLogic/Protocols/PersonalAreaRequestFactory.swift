@@ -14,5 +14,6 @@ protocol PersonalAreaRequestFactory {
     func logout(userId: Int, completionHandler: @escaping (AFDataResponse<Response<LogoutType>>) -> Void)
     func checkIn(_ data: UserDataProtocol, completionHandler: @escaping (AFDataResponse<Response<SignUpType>>) -> Void)
     func changeData(_ user: ChangeQueryData, completionHandler: @escaping (AFDataResponse<Response<ChangeDataType>>) -> Void)
+    
 }
 

@@ -14,15 +14,16 @@ final class SignUpViewController: UITextFieldsViewController {
 
     // MARK: - Private properties
     
+    private let flowsBuilder: FlowsElementBuilder
     private let personalArea: PersonalArea
-    private var contentView: SignUpView {
-        return self.view as! SignUpView
+    private var contentView: ChangeUserDataView {
+        return self.view as! ChangeUserDataView
     }
     
     // MARK: - Life cycle
     
     override func loadView() {
-        self.view = SignUpView()
+        self.view = flowsBuilder.buildViewPersonalArea(for: .signUp)
     }
     
     override func viewDidLoad() {
@@ -35,6 +36,7 @@ final class SignUpViewController: UITextFieldsViewController {
     override init() {
         let requestFactory = RequestFactory()
         personalArea = requestFactory.fetchRequestFactory()
+        flowsBuilder = FlowsElementBuilder()
         super.init()
     }
     
@@ -47,8 +49,6 @@ final class SignUpViewController: UITextFieldsViewController {
     override func setup() {
         
         self.navigationItem.title = "Sign Up..."
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationItem.largeTitleDisplayMode = .always
         
         contentView.signUpButton.addTarget(self, action: #selector(signUp), for: .touchUpInside)
         super.setup()

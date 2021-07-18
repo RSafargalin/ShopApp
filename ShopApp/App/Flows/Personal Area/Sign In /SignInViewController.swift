@@ -14,6 +14,7 @@ final class SignInViewController: UITextFieldsViewController {
     
     // MARK: - Private properties
     
+    private lazy var router: Router = RouterImpl(for: self)
     private let personalArea: PersonalArea
     private var contentView: SignInView {
         return self.view as! SignInView
@@ -40,8 +41,8 @@ final class SignInViewController: UITextFieldsViewController {
     override init() {
         let requestFactory = RequestFactory()
         personalArea = requestFactory.fetchRequestFactory()
-        super.init()
         
+        super.init()
     }
     
     required init?(coder: NSCoder) {
@@ -68,8 +69,7 @@ final class SignInViewController: UITextFieldsViewController {
     }
     
     @objc private func goToSignUp() {
-        let controller = SignUpViewController()
-        self.navigationController?.pushViewController(controller, animated: true)
+        router.show(screen: .SignUp, with: .push, with: false)
     }
     
     @objc private func signIn() {
@@ -97,9 +97,7 @@ final class SignInViewController: UITextFieldsViewController {
                 print(result)
                 DispatchQueue.main.async {
                     SessionData.shared.user = result.response.user
-                    
-                    let controller = UserProfileViewController()
-                    self?.navigationController?.setViewControllers([controller], animated: true)
+                    self?.router.show(screen: .UserProfile, with: .push, with: true)
                 }
                 
             case .failure(let error):

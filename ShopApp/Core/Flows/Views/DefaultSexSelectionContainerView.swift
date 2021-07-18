@@ -33,9 +33,7 @@ class DefaultSexSelectionContainerView: UIView {
     }
     
     func setSelectedSex(_ gender: Bool) {
-        gender == false ?
-                  (segmentedControl.selectedSegmentIndex = 0) :
-                  (segmentedControl.selectedSegmentIndex = 1)
+        gender == false ? (segmentedControl.selectedSegmentIndex = 0) : (segmentedControl.selectedSegmentIndex = 1)
     }
     
     // MARK: - Private methods
@@ -58,7 +56,6 @@ class DefaultSexSelectionContainerView: UIView {
     private func configureUI() {
 
         NSLayoutConstraint.activate([
-            
             label.centerYAnchor.constraint(equalTo: segmentedControl.centerYAnchor),
             label.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
             label.trailingAnchor.constraint(greaterThanOrEqualTo: segmentedControl.layoutMarginsGuide.trailingAnchor,
