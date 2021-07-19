@@ -13,8 +13,6 @@ class ProductsViewController: UIViewController {
     // MARK: - Private Variables
     
     private let catalogManager: Catalog
-    private let identifier = "Cell"
-    private var products = [Product]()
     
     private var contentView: ProductsView {
         return self.view as! ProductsView

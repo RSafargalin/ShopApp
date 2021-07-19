@@ -28,7 +28,7 @@ class FlowsBuilderImpl: FlowsBuilder {
         switch type {
         case .UserProfile:
             let userProfileController = UserProfileViewController()
-            let userProfileNavigationController = NavController(rootViewController: userProfileController)
+            let userProfileNavigationController = UINavigationController(rootViewController: userProfileController)
             userProfileController.tabBarItem.image = UIImage(systemName: "person.fill")
             userProfileController.tabBarItem.title = "Profile"
             return userProfileNavigationController
@@ -37,7 +37,7 @@ class FlowsBuilderImpl: FlowsBuilder {
             let catalogController = ProductsViewController()
             catalogController.tabBarItem.title = "Catalog"
             catalogController.tabBarItem.image = UIImage(systemName: "cart.fill")
-            let catalogNavigationController = NavController(rootViewController: catalogController)
+            let catalogNavigationController = UINavigationController(rootViewController: catalogController)
             return catalogNavigationController
             
         case .MainTabBar(let viewControllers):

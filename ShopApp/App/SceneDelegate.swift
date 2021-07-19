@@ -18,8 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         
         let viewController = SignInViewController()
-        let navigation = NavController(rootViewController: viewController)
-//        let navigation = UINavigationController(rootViewController: viewController)
+        let navigation = UINavigationController(rootViewController: viewController)
         
         window.rootViewController = navigation
         
