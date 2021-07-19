@@ -75,6 +75,11 @@
 		FECF62F026A19D3000588447 /* FlowsElementBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECF62EF26A19D3000588447 /* FlowsElementBuilder.swift */; };
 		FECF62F426A1ACE800588447 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECF62F326A1ACE800588447 /* ProductsViewController.swift */; };
 		FECF62F726A32B2600588447 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECF62F626A32B2600588447 /* Router.swift */; };
+		FECF62F926A4D91E00588447 /* NavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECF62F826A4D91E00588447 /* NavController.swift */; };
+		FECF62FB26A58E6500588447 /* FlowsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECF62FA26A58E6500588447 /* FlowsBuilder.swift */; };
+		FECF62FD26A59D0B00588447 /* ProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECF62FC26A59D0B00588447 /* ProductsView.swift */; };
+		FECF630026A5A66F00588447 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECF62FF26A5A66F00588447 /* ProductCell.swift */; };
+		FECF630226A5AC5500588447 /* ViewPlugForEmptyTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECF630126A5AC5500588447 /* ViewPlugForEmptyTable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -179,6 +184,11 @@
 		FECF62EF26A19D3000588447 /* FlowsElementBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowsElementBuilder.swift; sourceTree = "<group>"; };
 		FECF62F326A1ACE800588447 /* ProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
 		FECF62F626A32B2600588447 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		FECF62F826A4D91E00588447 /* NavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavController.swift; sourceTree = "<group>"; };
+		FECF62FA26A58E6500588447 /* FlowsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowsBuilder.swift; sourceTree = "<group>"; };
+		FECF62FC26A59D0B00588447 /* ProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsView.swift; sourceTree = "<group>"; };
+		FECF62FF26A5A66F00588447 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
+		FECF630126A5AC5500588447 /* ViewPlugForEmptyTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPlugForEmptyTable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -454,6 +464,8 @@
 				FE409E6C269C353700F47907 /* DefaultContainerForTextFieldWithLabel.swift */,
 				FE516A8E269DAB9F0005850E /* DefaultSexSelectionContainerView.swift */,
 				FE409E7D269C7DFA00F47907 /* ChangeUserDataView.swift */,
+				FECF62F826A4D91E00588447 /* NavController.swift */,
+				FECF630126A5AC5500588447 /* ViewPlugForEmptyTable.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -671,6 +683,7 @@
 			isa = PBXGroup;
 			children = (
 				FECF62EF26A19D3000588447 /* FlowsElementBuilder.swift */,
+				FECF62FA26A58E6500588447 /* FlowsBuilder.swift */,
 			);
 			path = Builder;
 			sourceTree = "<group>";
@@ -686,7 +699,9 @@
 		FECF62F226A1ACD000588447 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				FECF62FE26A5A05200588447 /* Cell */,
 				FECF62F326A1ACE800588447 /* ProductsViewController.swift */,
+				FECF62FC26A59D0B00588447 /* ProductsView.swift */,
 			);
 			path = Products;
 			sourceTree = "<group>";
@@ -697,6 +712,14 @@
 				FECF62F626A32B2600588447 /* Router.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		FECF62FE26A5A05200588447 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FECF62FF26A5A66F00588447 /* ProductCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -943,8 +966,10 @@
 				FE103AC3268615B30096DBE8 /* ChangeDataType.swift in Sources */,
 				FE103AC12686156E0096DBE8 /* SignUpType.swift in Sources */,
 				FEB3B7592691B810001BBC82 /* User.swift in Sources */,
+				FECF630226A5AC5500588447 /* ViewPlugForEmptyTable.swift in Sources */,
 				FE409E4A2699B56E00F47907 /* CartManagerRequestFactory.swift in Sources */,
 				FE409E7C269C6E5B00F47907 /* UITextFieldsViewController.swift in Sources */,
+				FECF62FB26A58E6500588447 /* FlowsBuilder.swift in Sources */,
 				FE103ABC2686052C0096DBE8 /* Constant.swift in Sources */,
 				FE516A9426A0303F0005850E /* UserProfileView.swift in Sources */,
 				FE409E7E269C7DFA00F47907 /* ChangeUserDataView.swift in Sources */,
@@ -979,11 +1004,14 @@
 				FE82FFE0267E082D008DDA1E /* SceneDelegate.swift in Sources */,
 				FE103AA1268221220096DBE8 /* AbstractRequestFactory.swift in Sources */,
 				FEB3B76C26934EA8001BBC82 /* ReviewManager.swift in Sources */,
+				FECF62FD26A59D0B00588447 /* ProductsView.swift in Sources */,
 				FEB3B76A26934E84001BBC82 /* ReviewRemove.swift in Sources */,
 				FE409E72269C5BE100F47907 /* EButton.swift in Sources */,
 				FE103A9B26821EE10096DBE8 /* ErrorParser.swift in Sources */,
 				FE516A9A26A05F5D0005850E /* UserChangeDataViewController.swift in Sources */,
+				FECF62F926A4D91E00588447 /* NavController.swift in Sources */,
 				FEB3B76E269350BA001BBC82 /* ReviewManagerRequestFactory.swift in Sources */,
+				FECF630026A5A66F00588447 /* ProductCell.swift in Sources */,
 				FE409E6F269C3BBF00F47907 /* SignInView.swift in Sources */,
 				FE409E62269B127B00F47907 /* SignInViewController.swift in Sources */,
 				FE409E76269C5ED000F47907 /* ETextField.swift in Sources */,

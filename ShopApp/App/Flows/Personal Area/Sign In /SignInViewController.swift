@@ -93,10 +93,9 @@ final class SignInViewController: UITextFieldsViewController {
             
             switch response.result {
             case .success(let result):
-                print(result)
                 DispatchQueue.main.async {
                     SessionData.shared.user = result.response.user
-                    self?.router.show(screen: .UserProfile, with: .push, with: true)
+                    self?.router.show(screen: .MainTabBar, with: .present, with: false)
                 }
                 
             case .failure(let error):

@@ -23,8 +23,7 @@ struct Constant {
                  surname = "surname",
                  email = "email",
                  gender = "gender",
-                 creditCard = "creditCard",
-                 bio = "bio"
+                 creditCard = "creditCard"
         }
         
         enum SignIn: String {

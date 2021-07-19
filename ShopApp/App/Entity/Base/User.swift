@@ -50,6 +50,8 @@ struct UserData: UserDataProtocol {
 
 struct User: UserProtocol {
     
+    // MARK: - Public variables
+    
     let id: Int,
         username: String,
         password: String,
@@ -59,5 +61,13 @@ struct User: UserProtocol {
         gender: Bool,
         creditCard: String,
         cart: [Int : Int]
+    
+    var fullName: String {
+        get {
+            "\(firstName) \(surname)"
+        }
+    }
+    
+    // MARK: - Public methods
     
 }

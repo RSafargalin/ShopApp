@@ -51,6 +51,8 @@ class UserProfileViewController: UIViewController {
     
     func setup() {
         
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        
         updateUserData()
         
         let changeDataBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(goToChangeUserData))
@@ -73,7 +75,7 @@ class UserProfileViewController: UIViewController {
                 self?.navigationItem.leftBarButtonItem?.isEnabled = true
                 switch response.result {
                 case .success(_):
-                    self?.router.show(screen: .SignIn, with: .set, with: false)
+                    self?.router.show(screen: .SignIn, with: .present, with: true)
                     
                     
                 case .failure(let error):
@@ -90,8 +92,7 @@ extension UserProfileViewController: UserProfileViewControllerDelegate {
     func updateUserData() {
         
         let user = SessionData.shared.user
-        self.navigationItem.title = "\(user.firstName) \(user.surname)"
-        self.navigationItem.prompt = user.username
+        self.navigationItem.title = user.fullName
         
         contentView.setGender(user.gender)
         contentView.setCreditCatd(user.creditCard)

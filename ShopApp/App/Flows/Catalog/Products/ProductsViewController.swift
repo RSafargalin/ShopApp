@@ -8,13 +8,17 @@
 import Foundation
 import UIKit
 
-class ProductsViewController: UITableViewController {
+class ProductsViewController: UIViewController {
     
     // MARK: - Private Variables
     
     private let catalogManager: Catalog
     private let identifier = "Cell"
     private var products = [Product]()
+    
+    private var contentView: ProductsView {
+        return self.view as! ProductsView
+    }
     
     // MARK: - Init
     
@@ -30,21 +34,31 @@ class ProductsViewController: UITableViewController {
     
     // MARK: - Life cycle
     
+    override func loadView() {
+        self.view = ProductsView()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
         fetchProducts()
     }
     
     // MARK: - Private methods
     
+    private func setup() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = "Catalog"
+    }
+    
     private func fetchProducts() {
-        
+        contentView.setPlugView(state: .show(activityIndicatorState: .show))
         catalogManager.fetchAll { [weak self] response in
             switch response.result {
             case .success(let result):
                 DispatchQueue.main.async {
-                    self?.products = result.response.products
-                    self?.tableView.reloadData()
+                    self?.contentView.setPlugView(state: .hide)
+                    self?.contentView.update(products: result.response.products)
                 }
                 
             case .failure(let error):
@@ -52,24 +66,6 @@ class ProductsViewController: UITableViewController {
             }
         }
         
-    }
-    
-    // MARK: - ProductsViewController + UITableViewDelegate, ProductsViewController + UITableViewDataSource
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        products.count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier) ?? UITableViewCell(style: .subtitle, reuseIdentifier: identifier)
-        let product = products[indexPath.row]
-        
-        cell.textLabel?.text = product.name
-        cell.detailTextLabel?.text = "\(product.price) ₽"
-        cell.accessoryType = .disclosureIndicator
-
-        return cell
     }
     
 }

@@ -18,7 +18,8 @@ enum Screens {
     case SignIn,
          SignUp,
          UserProfile,
-         ChangeData
+         ChangeData,
+         MainTabBar
 }
 
 protocol Router {
@@ -29,7 +30,12 @@ protocol Router {
 
 class RouterImpl: Router {
     
-    weak var controller: UIViewController?
+    // MARK: - Private Variables
+    
+    private weak var controller: UIViewController?
+    private let flowsBuilder: FlowsBuilder = FlowsBuilderImpl()
+    
+    // MARK: -  Public Methods
     
     func show(screen: Screens, with displayMode: DisplayMode, with navigationController: Bool = false) {
         
@@ -47,9 +53,18 @@ class RouterImpl: Router {
             
         case .UserProfile:
             show(UserProfileViewController.self, from: controller, with: displayMode, with: navigationController)
+            
+        case .MainTabBar:
+            controller.navigationController?.present(presentTabBar(), animated: true) { [weak self] in
+                controller.navigationController?.setViewControllers([], animated: false)
+                UIApplication.shared.windows.first?.rootViewController = self?.presentTabBar()
+                
+            }
         }
         
     }
+    
+    // MARK: - Private Methods
     
     private func show<Screen>(_ screen: Screen.Type,
                       from controller: UIViewController,
@@ -106,20 +121,16 @@ class RouterImpl: Router {
         
     }
     
-    private func presentTabBar() {
-        let userProfileController = UserProfileViewController()
-        let navusercontroller = UINavigationController(rootViewController: userProfileController)
-        userProfileController.title = "Profile"
-        userProfileController.tabBarItem.image = UIImage(systemName: "person.fill")
+    private func presentTabBar() -> UITabBarController {
         
-        let catalogController = ProductsViewController()
-        catalogController.title = "Catalog"
-        catalogController.tabBarItem.image = UIImage(systemName: "cart.fill")
-        let navcatalogcontroller = UINavigationController(rootViewController: catalogController)
+        let userProfileController = flowsBuilder.build(flow: .UserProfile)
+        let catalogController = flowsBuilder.build(flow: .Catalog)
         
-        let tabBarController = UITabBarController()
-        tabBarController.setViewControllers([navusercontroller, navcatalogcontroller], animated: false)
-        tabBarController.modalPresentationStyle = .fullScreen
+        guard let mainTabBarController = flowsBuilder.build(flow: .MainTabBar([userProfileController, catalogController])) as? UITabBarController
+        else { return UITabBarController() }
+        
+        return mainTabBarController
+        
     }
     
     init(for controller: UIViewController) {
