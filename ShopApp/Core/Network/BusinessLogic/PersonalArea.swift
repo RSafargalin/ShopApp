@@ -24,28 +24,42 @@ class PersonalArea: AbstractRequestFactory {
 
 extension PersonalArea: PersonalAreaRequestFactory {
     
-    func login(userName: String, password: String, completionHandler: @escaping (AFDataResponse<Response<SignInType>>) -> Void) {
+    func login(userName: String,
+               password: String,
+               completionHandler: @escaping (AFDataResponse<Response<SignInType>>) -> Void) {
+        
         let requestModel = Login(baseUrl: baseUrl, login: userName, password: password)
         self.request(request: requestModel, completionHandler: completionHandler)
+        
     }
 
-    func logout(userId: Int, completionHandler: @escaping (AFDataResponse<Response<LogoutType>>) -> Void) {
+    func logout(userId: Int,
+                completionHandler: @escaping (AFDataResponse<Response<LogoutType>>) -> Void) {
+        
         let requestModel = Logout(baseUrl: baseUrl, userId: userId)
         self.request(request: requestModel, completionHandler: completionHandler)
+        
     }
     
-    func checkIn(_ data: UserDataProtocol, completionHandler: @escaping (AFDataResponse<Response<SignUpType>>) -> Void) {
+    func checkIn(_ data: UserDataProtocol,
+                 completionHandler: @escaping (AFDataResponse<Response<SignUpType>>) -> Void) {
+        
         let requestModel = CheckIn(baseUrl: baseUrl, userData: data)
         self.request(request: requestModel, completionHandler: completionHandler)
+        
     }
     
-    func changeData(_ user: ChangeQueryData, completionHandler: @escaping (AFDataResponse<Response<ChangeDataType>>) -> Void) {
+    func changeData(_ user: ChangeQueryData,
+                    completionHandler: @escaping (AFDataResponse<Response<ChangeDataType>>) -> Void) {
+        
         let requestModel = ChangeData(baseUrl: baseUrl, user: user)
         self.request(request: requestModel, completionHandler: completionHandler)
+        
     }
 }
 
 extension PersonalArea {
+    
     struct Login: RequestRouter {
         let baseUrl: URL
         let method: HTTPMethod = .get

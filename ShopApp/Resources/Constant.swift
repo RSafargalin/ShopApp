@@ -7,13 +7,14 @@
 
 import Foundation
 import UIKit
+import Alamofire
 
 struct Constant {
     
     // MARK: - Personal Area
     
     enum PersonalArea {
-        static let baseUrl: URL = URL(string: "https://vast-dusk-53457.herokuapp.com/")!
+        static var baseUrl: URL = URL.getBaseURL()
         
         enum Parameters: String {
             case id = "id",
@@ -46,7 +47,7 @@ struct Constant {
     // MARK: - Catalog
     
     enum Catalog {
-        static let baseUrl: URL = URL(string: "https://vast-dusk-53457.herokuapp.com/")!
+        static let baseUrl: URL = URL.getBaseURL()
         
         enum Products: String {
             case path = "products"
@@ -64,7 +65,7 @@ struct Constant {
     // MARK: - ReviewManager
     
     enum ReviewManager {
-        static let baseUrl: URL = URL(string: "https://vast-dusk-53457.herokuapp.com/")!
+        static let baseUrl: URL = URL.getBaseURL()
         
         enum Parameters: String {
             case id,
@@ -90,7 +91,7 @@ struct Constant {
     // MARK: - Cart Manager
     
     enum CartManager {
-        static let baseUrl: URL = URL(string: "https://vast-dusk-53457.herokuapp.com/")!
+        static let baseUrl: URL = URL.getBaseURL()
         
         enum Parameters: String {
             case productId,

@@ -64,12 +64,13 @@ class ShopAppPersonalAreaTests: XCTestCase {
         let safePersonalArea = try fetchSafePersonalAreaRequestFactory()
         let expectation = expectation(description: #function)
         
-        let userData = UserData(name: TestConstant.User.StringValues.username.rawValue,
+        let userData = UserData(username: TestConstant.User.StringValues.username.rawValue,
                                 password: TestConstant.User.StringValues.password.rawValue,
-                                email: TestConstant.User.StringValues.email.rawValue,
+                                firstName: TestConstant.User.StringValues.email.rawValue,
+                                surname: TestConstant.User.StringValues.firstName.rawValue,
+                                email: TestConstant.User.StringValues.surname.rawValue,
                                 gender: false,
                                 creditCard: TestConstant.User.StringValues.creditCard.rawValue,
-                                bio: TestConstant.User.StringValues.bio.rawValue,
                                 cart: [:])
         
         safePersonalArea.checkIn(userData) { response in
@@ -79,7 +80,7 @@ class ShopAppPersonalAreaTests: XCTestCase {
                 expectation.fulfill()
                 
             case .failure(let error):
-                print(error)
+                logging(error.localizedDescription)
             }
         }
         
@@ -90,14 +91,14 @@ class ShopAppPersonalAreaTests: XCTestCase {
         let safePersonalArea = try fetchSafePersonalAreaRequestFactory()
         let expectation = expectation(description: #function)
         
-        let userData = User(id: TestConstant.User.IntValues.id.rawValue,
-                            name: TestConstant.User.StringValues.username.rawValue,
-                            password: TestConstant.User.StringValues.password.rawValue,
-                            email: TestConstant.User.StringValues.email.rawValue,
-                            gender: false,
-                            creditCard: TestConstant.User.StringValues.creditCard.rawValue,
-                            bio: TestConstant.User.StringValues.bio.rawValue,
-                            cart: [:])
+        let userData = ChangeQueryData(id: TestConstant.User.IntValues.id.rawValue,
+                                       username: TestConstant.User.StringValues.username.rawValue,
+                                       password: TestConstant.User.StringValues.password.rawValue,
+                                       firstName: TestConstant.User.StringValues.email.rawValue,
+                                       surname: TestConstant.User.StringValues.firstName.rawValue,
+                                       email: TestConstant.User.StringValues.surname.rawValue,
+                                       gender: false,
+                                       creditCard: TestConstant.User.StringValues.creditCard.rawValue)
         
         safePersonalArea.changeData(userData) { response in
             switch response.result {
@@ -106,7 +107,7 @@ class ShopAppPersonalAreaTests: XCTestCase {
                 expectation.fulfill()
                 
             case .failure(let error):
-                print(error)
+                logging(error.localizedDescription)
             }
         }
         

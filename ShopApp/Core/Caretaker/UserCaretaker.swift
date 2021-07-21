@@ -18,7 +18,7 @@ class UserCaretaker {
             let data = try self.encoder.encode(user)
             UserDefaults.standard.set(data, forKey: key)
         } catch {
-            print(error)
+            logging(error.localizedDescription)
         }
         
     }
@@ -31,7 +31,7 @@ class UserCaretaker {
         do {
             return try self.decoder.decode(User.self, from: data)
         } catch {
-            print(error)
+            logging(error.localizedDescription)
             return nil
         }
         

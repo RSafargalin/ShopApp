@@ -1,5 +1,5 @@
 //
-//  EButton.swift
+//  UIButton.swift
 //  ShopApp
 //
 //  Created by Ruslan Safargalin on 12.07.2021.

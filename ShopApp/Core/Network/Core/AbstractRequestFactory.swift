@@ -25,12 +25,13 @@ protocol AbstractRequestFactory: AnyObject {
 extension AbstractRequestFactory {
     
     @discardableResult
-    public func request<T: Decodable>(
-        request: URLRequestConvertible,
-        completionHandler: @escaping (AFDataResponse<T>) -> Void)
-        -> DataRequest {
+    public func request<T: Decodable>(request: URLRequestConvertible,
+                                      completionHandler: @escaping (AFDataResponse<T>) -> Void) -> DataRequest {
+        
             return sessionManager
-                .request(request)
-                .responseCodable(errorParser: errorParser, queue: queue, completionHandler: completionHandler)
+                                 .request(request)
+                                 .responseCodable(errorParser: errorParser,
+                                                  queue: queue,
+                                                  completionHandler: completionHandler)
     }
 }

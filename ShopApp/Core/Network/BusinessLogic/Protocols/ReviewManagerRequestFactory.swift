@@ -15,8 +15,16 @@ protocol ReviewManagerRequestFactory {
     typealias UserId = Int
     typealias Message = String
     
-    func fetchAllReviews(for productId: ProductId, completion: @escaping (AFDataResponse<Response<ReviewsForProduct>>) -> Void)
-    func removeReview(with reviewId: ReviewId, for productId: ProductId, completion: @escaping (AFDataResponse<Response<ReviewRemove>>) -> Void)
-    func addReview(for productId: ProductId, with userId: UserId, and message: Message, completion: @escaping (AFDataResponse<Response<ReviewAdded>>) -> Void)
+    func fetchAllReviews(for productId: ProductId,
+                         completion: @escaping (AFDataResponse<Response<ReviewsForProduct>>) -> Void)
+    
+    func removeReview(with reviewId: ReviewId,
+                      for productId: ProductId,
+                      completion: @escaping (AFDataResponse<Response<ReviewRemove>>) -> Void)
+    
+    func addReview(for productId: ProductId,
+                   with userId: UserId,
+                   and message: Message,
+                   completion: @escaping (AFDataResponse<Response<ReviewAdded>>) -> Void)
     
 }

@@ -76,7 +76,14 @@ class RouterImpl: Router {
         let isUserProfileViewController = (controller is UserProfileViewController)
         
         if isUserChangeDataViewController && isUserProfileViewController {
-            screenController = UserChangeDataViewController(controller as! UserProfileViewControllerDelegate) as? Screen
+            guard let userProfileViewController = controller as? UserProfileViewControllerDelegate,
+                  let safeScreenController = UserChangeDataViewController(userProfileViewController) as? Screen
+            else {
+                screenController = Screen()
+                return
+            }
+            
+            screenController = safeScreenController
         } else {
             screenController = Screen()
         }
@@ -126,7 +133,8 @@ class RouterImpl: Router {
         let userProfileController = flowsBuilder.build(flow: .UserProfile)
         let catalogController = flowsBuilder.build(flow: .Catalog)
         
-        guard let mainTabBarController = flowsBuilder.build(flow: .MainTabBar([userProfileController, catalogController])) as? UITabBarController
+        guard let mainTabBarController = flowsBuilder
+                .build(flow: .MainTabBar([userProfileController, catalogController])) as? UITabBarController
         else { return UITabBarController() }
         
         return mainTabBarController

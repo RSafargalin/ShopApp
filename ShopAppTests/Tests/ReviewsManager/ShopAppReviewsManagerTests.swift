@@ -30,7 +30,6 @@ class ShopAppReviewsManagerTests: XCTestCase {
         safeFactory.fetchAllReviews(for: 1) { response in
             switch response.result {
             case .success(let result):
-                print(result.response.reviews)
                 XCTAssertNotNil(result.response.result, "Product result is nil")
                 XCTAssertEqual(result.response.result, TestConstant.Server.Response.goodResultCode)
                 expectation.fulfill()

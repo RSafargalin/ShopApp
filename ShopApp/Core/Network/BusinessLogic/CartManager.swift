@@ -14,7 +14,9 @@ class CartManager: AbstractRequestFactory {
     let queue: DispatchQueue
     let baseUrl = Constant.ReviewManager.baseUrl
     
-    required init(errorParser: AbstractErrorParser, sessionManager: Session, queue: DispatchQueue = DispatchQueue.global(qos: .utility)) {
+    required init(errorParser: AbstractErrorParser,
+                  sessionManager: Session,
+                  queue: DispatchQueue = DispatchQueue.global(qos: .utility)) {
         self.errorParser = errorParser
         self.sessionManager = sessionManager
         self.queue = queue
@@ -23,19 +25,24 @@ class CartManager: AbstractRequestFactory {
 
 extension CartManager: CartManagerRequestFactory {
     
-    typealias ReviewId = Int
+    typealias ProductQuantity = Int
     typealias ProductId = Int
-    typealias UserId = Int
-    typealias Message = String
     
-    func add(productId: Int, with quantity: Int, completion: @escaping (AFDataResponse<Response<ProductAddedToCard>>) -> Void) {
+    func add(productId: ProductId,
+             with quantity: ProductQuantity,
+             completion: @escaping (AFDataResponse<Response<ProductAddedToCard>>) -> Void) {
+        
         let requestModel = AddProductToCart(baseUrl: baseUrl, productId: productId, quantity: quantity, userId: SessionData.shared.user.id)
         self.request(request: requestModel, completionHandler: completion)
+        
     }
     
-    func remove(productId: Int, completion: @escaping (AFDataResponse<Response<ProductRemoveFromCart>>) -> Void) {
+    func remove(productId: ProductId,
+                completion: @escaping (AFDataResponse<Response<ProductRemoveFromCart>>) -> Void) {
+        
         let requestModel = RemoveProductFromCart(baseUrl: baseUrl, productId: productId, userId: SessionData.shared.user.id)
         self.request(request: requestModel, completionHandler: completion)
+        
     }
     
     func pay(completion: @escaping (AFDataResponse<Response<PaingCart>>) -> Void) {

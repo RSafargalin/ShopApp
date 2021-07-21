@@ -17,7 +17,7 @@ final class SignUpViewController: UITextFieldsViewController {
     private let flowsBuilder: FlowsElementBuilder
     private let personalArea: PersonalArea
     private var contentView: ChangeUserDataView {
-        return self.view as! ChangeUserDataView
+        return transformView(to: ChangeUserDataView.self)
     }
     
     // MARK: - Life cycle
@@ -99,10 +99,10 @@ final class SignUpViewController: UITextFieldsViewController {
             
             switch response.result {
             case .success(let result):
-                print(result)
+                logging(result)
                 
             case .failure(let error):
-                print(error)
+                logging(error.localizedDescription)
             }
         }
         

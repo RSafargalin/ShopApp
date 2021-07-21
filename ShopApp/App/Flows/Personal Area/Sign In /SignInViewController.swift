@@ -17,7 +17,7 @@ final class SignInViewController: UITextFieldsViewController {
     private lazy var router: Router = RouterImpl(for: self)
     private let personalArea: PersonalArea
     private var contentView: SignInView {
-        return self.view as! SignInView
+        return transformView(to: SignInView.self)
     }
     
     // MARK: - Life cycle
@@ -99,7 +99,7 @@ final class SignInViewController: UITextFieldsViewController {
                 }
                 
             case .failure(let error):
-                print(error)
+                logging(error.localizedDescription)
             }
         }
         

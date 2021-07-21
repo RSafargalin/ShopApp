@@ -95,7 +95,8 @@ extension ProductsView: UITableViewDelegate, UITableViewDataSource {
 
         var cell: ProductCell?
         
-        if let productCell = tableView.dequeueReusableCell(withIdentifier: ProductCell.identifier, for: indexPath) as? ProductCell {
+        if let productCell = tableView.dequeueReusableCell(withIdentifier: ProductCell.identifier,
+                                                           for: indexPath) as? ProductCell {
             cell = productCell
         } else {
             cell = ProductCell()

@@ -74,10 +74,14 @@ final class SignInView: UIView, ContentView {
             scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
 
             stackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: self.layoutMargins.left * 2),
-            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -self.layoutMargins.left * 2),
-            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: self.layoutMargins.top),
-            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: self.layoutMargins.top),
+            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor,
+                                               constant: self.layoutMargins.left * 2),
+            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor,
+                                                constant: -self.layoutMargins.left * 2),
+            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor,
+                                           constant: self.layoutMargins.top),
+            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor,
+                                              constant: self.layoutMargins.top),
             
             signInButton.heightAnchor.constraint(equalToConstant: 44),
         ])

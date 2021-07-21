@@ -18,7 +18,7 @@ final class UserChangeDataViewController: UITextFieldsViewController {
     private var delegate: UserProfileViewControllerDelegate?
     private let personalArea: PersonalArea
     private var contentView: ChangeUserDataView {
-        return self.view as! ChangeUserDataView
+        return transformView(to: ChangeUserDataView.self)
     }
     
     // MARK: - Life cycle
@@ -111,12 +111,11 @@ final class UserChangeDataViewController: UITextFieldsViewController {
                 switch response.result {
                 case .success(let result):
                     SessionData.shared.user = result.response.user
-                    print(result.response.user)
                     self?.delegate?.updateUserData()
                     self?.navigationController?.popViewController(animated: true)
                     
                 case .failure(let error):
-                    print(error)
+                    logging(error.localizedDescription)
                 }
             }
         }

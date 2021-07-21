@@ -14,10 +14,14 @@ class ReviewManager: AbstractRequestFactory {
     let queue: DispatchQueue
     let baseUrl = Constant.ReviewManager.baseUrl
     
-    required init(errorParser: AbstractErrorParser, sessionManager: Session, queue: DispatchQueue = DispatchQueue.global(qos: .utility)) {
+    required init(errorParser: AbstractErrorParser,
+                  sessionManager: Session,
+                  queue: DispatchQueue = DispatchQueue.global(qos: .utility)) {
+        
         self.errorParser = errorParser
         self.sessionManager = sessionManager
         self.queue = queue
+        
     }
 }
 
@@ -28,19 +32,31 @@ extension ReviewManager: ReviewManagerRequestFactory {
     typealias UserId = Int
     typealias Message = String
     
-    func fetchAllReviews(for productId: ProductId, completion: @escaping (AFDataResponse<Response<ReviewsForProduct>>) -> Void) {
+    func fetchAllReviews(for productId: ProductId,
+                         completion: @escaping (AFDataResponse<Response<ReviewsForProduct>>) -> Void) {
+        
         let requestModel = AllReviewsForProduct(baseUrl: baseUrl, id: productId)
         self.request(request: requestModel, completionHandler: completion)
+        
     }
     
-    func removeReview(with reviewId: ReviewId, for productId: ProductId,  completion: @escaping (AFDataResponse<Response<ReviewRemove>>) -> Void) {
+    func removeReview(with reviewId: ReviewId,
+                      for productId: ProductId,
+                      completion: @escaping (AFDataResponse<Response<ReviewRemove>>) -> Void) {
+        
         let requestModel = RemoveReviewForProduct(baseUrl: baseUrl, productId: productId, reviewId: reviewId)
         self.request(request: requestModel, completionHandler: completion)
+        
     }
     
-    func addReview(for productId: ProductId, with userId: UserId, and message: Message, completion: @escaping (AFDataResponse<Response<ReviewAdded>>) -> Void) {
+    func addReview(for productId: ProductId,
+                   with userId: UserId,
+                   and message: Message,
+                   completion: @escaping (AFDataResponse<Response<ReviewAdded>>) -> Void) {
+        
         let requestModel = AddReviewForProduct(baseUrl: baseUrl, productId: productId, userId: userId, message: message)
         self.request(request: requestModel, completionHandler: completion)
+        
     }
 
 }

@@ -15,7 +15,7 @@ class ProductsViewController: UIViewController {
     private let catalogManager: Catalog
     
     private var contentView: ProductsView {
-        return self.view as! ProductsView
+        return transformView(to: ProductsView.self)
     }
     
     // MARK: - Init
@@ -60,7 +60,7 @@ class ProductsViewController: UIViewController {
                 }
                 
             case .failure(let error):
-                print(error)
+                logging(error.localizedDescription)
             }
         }
         

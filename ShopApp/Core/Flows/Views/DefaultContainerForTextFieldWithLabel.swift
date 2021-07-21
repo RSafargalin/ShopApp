@@ -77,7 +77,8 @@ class DefaultContainerForTextFieldWithLabel: UIView, ContainerForTextFieldWithLa
             label.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
             label.heightAnchor.constraint(equalToConstant: Constant.Sizes.Label.rawValue),
             
-            textField.topAnchor.constraint(equalTo: label.bottomAnchor, constant: Constant.Margins.TextFieldFromLabel.rawValue),
+            textField.topAnchor.constraint(equalTo: label.bottomAnchor,
+                                           constant: Constant.Margins.TextFieldFromLabel.rawValue),
             textField.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
             textField.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
             textField.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor),

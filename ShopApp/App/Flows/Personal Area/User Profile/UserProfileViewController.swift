@@ -19,7 +19,7 @@ class UserProfileViewController: UIViewController {
     private lazy var router: Router = RouterImpl(for: self)
     private let personalArea: PersonalArea
     private var contentView: UserProfileView {
-        return self.view as! UserProfileView
+        return transformView(to: UserProfileView.self)
     }
     
     // MARK: - Life cycle
@@ -55,8 +55,14 @@ class UserProfileViewController: UIViewController {
         
         updateUserData()
         
-        let changeDataBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(goToChangeUserData))
-        let logoutBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logout))
+        let changeDataBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit,
+                                                      target: self,
+                                                      action: #selector(goToChangeUserData))
+        
+        let logoutBarButtonItem = UIBarButtonItem(title: "Logout",
+                                                  style: .plain,
+                                                  target: self,
+                                                  action: #selector(logout))
         
         self.navigationItem.rightBarButtonItem = changeDataBarButtonItem
         self.navigationItem.leftBarButtonItem = logoutBarButtonItem
@@ -79,7 +85,7 @@ class UserProfileViewController: UIViewController {
                     
                     
                 case .failure(let error):
-                    print(error)
+                    logging(error.localizedDescription)
                 }
             }
         }

@@ -21,8 +21,8 @@ class UITextFieldsViewController: UIViewController {
     
     // MARK: - Private properties
     
-    private var contentView: ContentView {
-        return self.view as! ContentView
+    private var contentView: ContentView? {
+        return self.view as? ContentView
     }
     
     // MARK: - Life cycle
@@ -46,11 +46,20 @@ class UITextFieldsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Private methods
+    // MARK: - Internal methods
+    
+    func getView<ViewType: UIView>(_ type: ViewType.Type) -> ViewType {
+        
+        if let view = self.view as? ViewType {
+            return view
+        } else {
+            return type.init(frame: self.view.frame)
+        }
+    }
     
     func setup() {
         let scrollViewTap = UITapGestureRecognizer(target: self, action: #selector(scrollViewTapped(_:)))
-        contentView.scrollView.addGestureRecognizer(scrollViewTap)
+        contentView?.scrollView.addGestureRecognizer(scrollViewTap)
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.largeTitleDisplayMode = .always
     }
@@ -61,7 +70,7 @@ class UITextFieldsViewController: UIViewController {
 extension UITextFieldsViewController {
     
     @objc func scrollViewTapped(_ sender: UITapGestureRecognizer) {
-        contentView.scrollView.endEditing(true)
+        contentView?.scrollView.endEditing(true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,15 +97,18 @@ extension UITextFieldsViewController {
     }
     
     @objc func keyboardWillShow(notification: Notification) {
-        guard let keyboardSize = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
+        
+        guard let keyboardSize = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
+        else { return }
+        
         let inset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
-        contentView.scrollView.contentInset = inset
-        contentView.scrollView.scrollIndicatorInsets = inset
+        contentView?.scrollView.contentInset = inset
+        contentView?.scrollView.scrollIndicatorInsets = inset
         
     }
     
     @objc func keyboardWillHide() {
-        contentView.scrollView.contentInset = .zero
+        contentView?.scrollView.contentInset = .zero
     }
     
 }

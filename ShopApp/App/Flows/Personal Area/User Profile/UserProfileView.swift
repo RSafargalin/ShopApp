@@ -70,9 +70,11 @@ final class UserProfileView: UIView {
             genderLabel.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
             genderLabel.heightAnchor.constraint(equalToConstant: Constant.Sizes.Label.rawValue),
             
-            creditCardIcon.topAnchor.constraint(equalTo: genderLabel.layoutMarginsGuide.bottomAnchor, constant: genderLabel.layoutMargins.bottom * 2),
+            creditCardIcon.topAnchor.constraint(equalTo: genderLabel.layoutMarginsGuide.bottomAnchor,
+                                                constant: genderLabel.layoutMargins.bottom * 2),
             creditCardIcon.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
-            creditCardIcon.trailingAnchor.constraint(greaterThanOrEqualTo: creditCardLabel.leadingAnchor, constant: -creditCardLabel.layoutMargins.left * 2),
+            creditCardIcon.trailingAnchor.constraint(greaterThanOrEqualTo: creditCardLabel.leadingAnchor,
+                                                     constant: -creditCardLabel.layoutMargins.left * 2),
             creditCardIcon.widthAnchor.constraint(equalToConstant: 36),
             creditCardIcon.heightAnchor.constraint(equalToConstant: 24),
             
