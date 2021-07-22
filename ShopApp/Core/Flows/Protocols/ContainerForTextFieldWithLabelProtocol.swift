@@ -18,6 +18,7 @@ protocol ContainerForTextFieldWithLabelProtocol: UIView {
     func getText() -> String?
     func shake() -> Void
     func setText(_ text: String) -> Void
+    func isSecureTextField(_ value: Bool)
     
     init(with title: Title, and placeholder: Placeholder)
 }

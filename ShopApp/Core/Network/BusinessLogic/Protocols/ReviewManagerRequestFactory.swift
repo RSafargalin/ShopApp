@@ -23,7 +23,7 @@ protocol ReviewManagerRequestFactory {
                       completion: @escaping (AFDataResponse<Response<ReviewRemove>>) -> Void)
     
     func addReview(for productId: ProductId,
-                   with userId: UserId,
+                   with user: String,
                    and message: Message,
                    completion: @escaping (AFDataResponse<Response<ReviewAdded>>) -> Void)
     

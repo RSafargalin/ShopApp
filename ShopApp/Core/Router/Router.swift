@@ -19,7 +19,8 @@ enum Screens {
          SignUp,
          UserProfile,
          ChangeData,
-         MainTabBar
+         MainTabBar,
+         Profile(product: Product)
 }
 
 protocol Router {
@@ -60,6 +61,11 @@ class RouterImpl: Router {
                 UIApplication.shared.windows.first?.rootViewController = self?.presentTabBar()
                 
             }
+            
+        case .Profile(let product):
+            let profileController = ProductProfileViewController(product: product)
+            controller.navigationController?.pushViewController(profileController, animated: true)
+//            show(ProductProfileViewController.self, from: controller, with: displayMode, with: navigationController)
         }
         
     }

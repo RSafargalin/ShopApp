@@ -59,6 +59,8 @@ final class SignInView: UIView, ContentView {
         stackView.addArrangedSubview(passwordContainerView)
         stackView.addArrangedSubview(signInButton)
     
+        passwordContainerView.isSecureTextField(true)
+        
         signInButton.setTitle("Join", for: .normal)
         signInButton.tintColor = .white
         signInButton.backgroundColor = .accentColor

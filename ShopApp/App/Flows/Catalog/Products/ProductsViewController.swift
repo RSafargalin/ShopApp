@@ -33,7 +33,7 @@ class ProductsViewController: UIViewController {
     // MARK: - Life cycle
     
     override func loadView() {
-        self.view = ProductsView()
+        self.view = ProductsView(parent: self)
     }
     
     override func viewDidLoad() {

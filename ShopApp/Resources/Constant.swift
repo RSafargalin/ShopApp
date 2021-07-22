@@ -69,7 +69,7 @@ struct Constant {
         
         enum Parameters: String {
             case id,
-                 userId,
+                 user,
                  productId,
                  message,
                  reviewId

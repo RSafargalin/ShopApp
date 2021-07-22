@@ -48,6 +48,10 @@ class DefaultContainerForTextFieldWithLabel: UIView, ContainerForTextFieldWithLa
         textField.text = text
     }
     
+    func isSecureTextField(_ value: Bool) {
+        textField.isSecureTextEntry = value
+    }
+    
     // MARK: - Private methods
     
     private func setup(label text: String = "Undefined", with placeholder: String = "Placeholder...") {

@@ -50,11 +50,11 @@ extension ReviewManager: ReviewManagerRequestFactory {
     }
     
     func addReview(for productId: ProductId,
-                   with userId: UserId,
+                   with user: String,
                    and message: Message,
                    completion: @escaping (AFDataResponse<Response<ReviewAdded>>) -> Void) {
         
-        let requestModel = AddReviewForProduct(baseUrl: baseUrl, productId: productId, userId: userId, message: message)
+        let requestModel = AddReviewForProduct(baseUrl: baseUrl, productId: productId, user: user, message: message)
         self.request(request: requestModel, completionHandler: completion)
         
     }
@@ -97,12 +97,12 @@ extension ReviewManager {
         let path: String = Constant.ReviewManager.Add.path.rawValue
         
         let productId: Int
-        let userId: Int
+        let user: String
         let message: String
         var parameters: Parameters? {
             return [
                 Constant.ReviewManager.Parameters.productId.rawValue: productId,
-                Constant.ReviewManager.Parameters.userId.rawValue: userId,
+                Constant.ReviewManager.Parameters.user.rawValue: user,
                 Constant.ReviewManager.Parameters.message.rawValue: message
             ]
         }

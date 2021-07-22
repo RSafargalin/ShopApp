@@ -12,4 +12,8 @@ struct Product: Codable {
     let name: String
     let price: Int
     let description: String
+    
+    public func getPriceInStringFormat() -> String {
+        "\(price) ₽"
+    }
 }
