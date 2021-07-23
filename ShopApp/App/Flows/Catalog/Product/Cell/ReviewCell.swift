@@ -56,7 +56,7 @@ class ReviewCell: UICollectionViewCell {
         layer.shadowOffset = CGSize.zero
         layer.shadowColor = UIColor.black.cgColor
 
-        self.backgroundColor = .white
+        self.backgroundColor = .systemBackground
         self.layer.cornerRadius = 10
         
         NSLayoutConstraint.activate([
@@ -70,7 +70,8 @@ class ReviewCell: UICollectionViewCell {
                                                     constant: userNameLabel.layoutMargins.bottom * 2),
             reviewMessageLabel.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
             reviewMessageLabel.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
-            reviewMessageLabel.bottomAnchor.constraint(lessThanOrEqualTo: self.layoutMarginsGuide.bottomAnchor, constant: -self.layoutMargins.bottom),
+            reviewMessageLabel.bottomAnchor.constraint(lessThanOrEqualTo: self.layoutMarginsGuide.bottomAnchor,
+                                                       constant: -self.layoutMargins.bottom),
             
         ])
     }

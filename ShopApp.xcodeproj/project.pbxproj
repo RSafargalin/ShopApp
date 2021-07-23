@@ -84,7 +84,6 @@
 		FECF630C26A832DD00588447 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECF630B26A832DD00588447 /* URL.swift */; };
 		FECF630F26A8359A00588447 /* ProductProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECF630E26A8359A00588447 /* ProductProfileViewController.swift */; };
 		FECF631126A835AD00588447 /* ProductProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECF631026A835AD00588447 /* ProductProfileView.swift */; };
-		FECF631326A842C000588447 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FECF631226A842C000588447 /* Storyboard.storyboard */; };
 		FECF631626A84F0B00588447 /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECF631526A84F0B00588447 /* ReviewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -198,7 +197,6 @@
 		FECF630B26A832DD00588447 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		FECF630E26A8359A00588447 /* ProductProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductProfileViewController.swift; sourceTree = "<group>"; };
 		FECF631026A835AD00588447 /* ProductProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductProfileView.swift; sourceTree = "<group>"; };
-		FECF631226A842C000588447 /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		FECF631526A84F0B00588447 /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -757,7 +755,6 @@
 				FECF631426A84F0000588447 /* Cell */,
 				FECF630E26A8359A00588447 /* ProductProfileViewController.swift */,
 				FECF631026A835AD00588447 /* ProductProfileView.swift */,
-				FECF631226A842C000588447 /* Storyboard.storyboard */,
 			);
 			path = Product;
 			sourceTree = "<group>";
@@ -880,7 +877,6 @@
 			files = (
 				FE82FFEA267E082E008DDA1E /* LaunchScreen.storyboard in Resources */,
 				FE82FFE7267E082E008DDA1E /* Assets.xcassets in Resources */,
-				FECF631326A842C000588447 /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

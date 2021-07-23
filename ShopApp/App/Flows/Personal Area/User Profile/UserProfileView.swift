@@ -62,8 +62,6 @@ final class UserProfileView: UIView {
         creditCardLabel.translatesAutoresizingMaskIntoConstraints = false
         creditCardIcon.translatesAutoresizingMaskIntoConstraints = false
         
-        creditCardIcon.tintColor = .black
-        
         NSLayoutConstraint.activate([
             genderLabel.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
             genderLabel.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
