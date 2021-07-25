@@ -22,4 +22,5 @@ protocol CartManagerRequestFactory {
     
     func pay(completion: @escaping (AFDataResponse<Response<PaingCart>>) -> Void)
     
+    func fetchProductsOnCart(completion: @escaping (AFDataResponse<Response<ProductsOnCart>>) -> Void)
 }

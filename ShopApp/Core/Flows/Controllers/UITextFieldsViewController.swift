@@ -59,7 +59,10 @@ class UITextFieldsViewController: UIViewController {
     
     func setup() {
         let scrollViewTap = UITapGestureRecognizer(target: self, action: #selector(scrollViewTapped(_:)))
-        contentView?.scrollView.addGestureRecognizer(scrollViewTap)
+        guard let contentView = contentView else {
+            fatalError()
+        }
+        contentView.scrollView.addGestureRecognizer(scrollViewTap)
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.largeTitleDisplayMode = .always
     }

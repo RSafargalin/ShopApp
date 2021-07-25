@@ -109,6 +109,11 @@ struct Constant {
         
         enum Pay: String {
             case path = "cart.pay"
+            
+        }
+        
+        enum ProductsOnCart: String {
+            case path = "cart.products.forUser"
         }
     }
     

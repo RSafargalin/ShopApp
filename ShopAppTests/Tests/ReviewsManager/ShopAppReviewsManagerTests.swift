@@ -65,7 +65,7 @@ class ShopAppReviewsManagerTests: XCTestCase {
         let safeFactory = try fetchSafeReviewsManagerRequestFactory()
         let expectation = expectation(description: #function)
         
-        safeFactory.addReview(for: 1, with: 1, and: "Good product") { response in
+        safeFactory.addReview(for: 1, with: "user", and: "Good product") { response in
             switch response.result {
             case .success(let result):
                 XCTAssertNotNil(result.response.result, "Product result is nil")
