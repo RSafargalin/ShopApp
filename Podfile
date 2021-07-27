@@ -6,16 +6,16 @@ target 'ShopApp' do
   use_frameworks!
 
   # Pods for ShopApp
+  pod 'Firebase/Analytics'
+  pod 'Alamofire'
 
-pod 'Alamofire'
+    target 'ShopAppTests' do
+      inherit! :search_paths
+      # Pods for testing
+    end
 
-  target 'ShopAppTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'ShopAppUITests' do
-    # Pods for testing
-  end
+    target 'ShopAppUITests' do
+      # Pods for testing
+    end
 
 end

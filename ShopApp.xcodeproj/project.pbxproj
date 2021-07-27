@@ -63,6 +63,7 @@
 		FE82FFE7267E082E008DDA1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE82FFE6267E082E008DDA1E /* Assets.xcassets */; };
 		FE82FFEA267E082E008DDA1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE82FFE8267E082E008DDA1E /* LaunchScreen.storyboard */; };
 		FE82FFF5267E082E008DDA1E /* ShopAppPersonalAreaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE82FFF4267E082E008DDA1E /* ShopAppPersonalAreaTests.swift */; };
+		FE931C0F26B00DD300316858 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE931C0E26B00DD300316858 /* GoogleService-Info.plist */; };
 		FEB3B74D26907AD5001BBC82 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB3B74C26907AD5001BBC82 /* Response.swift */; };
 		FEB3B74F26907EE3001BBC82 /* ProductType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB3B74E26907EE3001BBC82 /* ProductType.swift */; };
 		FEB3B75126908507001BBC82 /* ProductsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB3B75026908507001BBC82 /* ProductsType.swift */; };
@@ -187,6 +188,7 @@
 		FE82FFF6267E082E008DDA1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE82FFFB267E082E008DDA1E /* ShopAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShopAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE82FFFF267E082E008DDA1E /* ShopAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopAppUITests.swift; sourceTree = "<group>"; };
+		FE931C0E26B00DD300316858 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FEB3B74C26907AD5001BBC82 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		FEB3B74E26907EE3001BBC82 /* ProductType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductType.swift; sourceTree = "<group>"; };
 		FEB3B75026908507001BBC82 /* ProductsType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsType.swift; sourceTree = "<group>"; };
@@ -638,6 +640,7 @@
 		FE820014267E0BE0008DDA1E /* Environments */ = {
 			isa = PBXGroup;
 			children = (
+				FE931C0E26B00DD300316858 /* GoogleService-Info.plist */,
 				FE82FFEB267E082E008DDA1E /* Info.plist */,
 			);
 			path = Environments;
@@ -992,6 +995,7 @@
 			files = (
 				FE82FFEA267E082E008DDA1E /* LaunchScreen.storyboard in Resources */,
 				FE82FFE7267E082E008DDA1E /* Assets.xcassets in Resources */,
+				FE931C0F26B00DD300316858 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
