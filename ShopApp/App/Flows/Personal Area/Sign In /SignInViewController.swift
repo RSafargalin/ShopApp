@@ -74,9 +74,7 @@ final class SignInViewController: UITextFieldsViewController {
     }
     
     @objc private func signIn() {
-//        let numbers = [0]
-//        let _ = numbers[1]
-//
+        
         guard let username = contentView.usernameContainerView.getText(),
               let password = contentView.passwordContainerView.getText(),
               !username.isEmpty,
