@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import FirebaseAnalytics
 
 // MARK: - SignInViewController
 
@@ -100,9 +101,17 @@ final class SignUpViewController: UITextFieldsViewController {
             switch response.result {
             case .success(let result):
                 logging(result)
+                Analytics.logEvent(AnalyticsEventSignUp, parameters: [
+                    AnalyticsParameterMethod: self?.method as Any,
+                    "username" : username
+                ])
                 
             case .failure(let error):
                 logging(error.localizedDescription)
+                Analytics.logEvent("SignUpError", parameters: [
+                    AnalyticsParameterMethod: self?.method as Any,
+                    "username" : username
+                ])
             }
         }
         

@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-
+import FirebaseAnalytics
 
 protocol CartViewControllerProtocol {
     
@@ -98,6 +98,11 @@ extension CartViewController: CartViewControllerProtocol {
         cartManager.remove(productId: id) { [weak self] response in
             switch response.result {
             case .success(_):
+                Analytics.logEvent(AnalyticsEventRemoveFromCart, parameters: [
+                    AnalyticsParameterMethod: self?.method as Any,
+                    "username" : SessionData.shared.user.username,
+                    "productId" : id
+                ])
                 self?.products.removeAll(where: { $0.id == id })
                 guard let products = self?.products else { return }
                 let totalCost = self?.fetchTotalCostInStringFormat(for: products) ?? "0 ₽"
@@ -119,6 +124,10 @@ extension CartViewController: CartViewControllerProtocol {
         cartManager.pay { [weak self] response in
             switch response.result {
             case .success(let result):
+                Analytics.logEvent("Pay", parameters: [
+                    AnalyticsParameterMethod: self?.method as Any,
+                    "username" : SessionData.shared.user.username
+                ])
                 logging(result.response.totalCost)
                 self?.products = []
                 DispatchQueue.main.async {

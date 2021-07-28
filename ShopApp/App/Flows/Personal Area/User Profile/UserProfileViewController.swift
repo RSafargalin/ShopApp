@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import FirebaseAnalytics
 
 protocol UserProfileViewControllerDelegate {
     func updateUserData()
@@ -82,10 +83,18 @@ class UserProfileViewController: UIViewController {
                 switch response.result {
                 case .success(_):
                     self?.router.show(screen: .SignIn, with: .present, with: true)
+                    Analytics.logEvent("LogoutSuccess", parameters: [
+                        AnalyticsParameterMethod: self?.method as Any,
+                        "username" : SessionData.shared.user.username
+                    ])
                     
                     
                 case .failure(let error):
                     logging(error.localizedDescription)
+                    Analytics.logEvent("LogoutError", parameters: [
+                        AnalyticsParameterMethod: self?.method as Any,
+                        "username" : SessionData.shared.user.username
+                    ])
                 }
             }
         }
