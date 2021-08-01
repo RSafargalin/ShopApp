@@ -11,13 +11,11 @@ import UIKit
 extension UIViewController {
     
     func transformView<ViewType: UIView>(to type: ViewType.Type) -> ViewType {
-        
-        if let view = self.view as? ViewType {
-            return view
-        } else {
-            return type.init(frame: self.view.frame)
+        guard let view = self.view as? ViewType else {
+            fatalError("It was not possible to bring the view type to the required one. Initializer called.")
         }
         
+        return view
     }
     
 }

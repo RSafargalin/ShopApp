@@ -94,9 +94,9 @@ class ShopAppPersonalAreaTests: XCTestCase {
         let userData = ChangeQueryData(id: TestConstant.User.IntValues.id.rawValue,
                                        username: TestConstant.User.StringValues.username.rawValue,
                                        password: TestConstant.User.StringValues.password.rawValue,
-                                       firstName: TestConstant.User.StringValues.email.rawValue,
-                                       surname: TestConstant.User.StringValues.firstName.rawValue,
-                                       email: TestConstant.User.StringValues.surname.rawValue,
+                                       firstName: TestConstant.User.StringValues.firstName.rawValue,
+                                       surname: TestConstant.User.StringValues.surname.rawValue,
+                                       email: TestConstant.User.StringValues.email.rawValue,
                                        gender: false,
                                        creditCard: TestConstant.User.StringValues.creditCard.rawValue)
         

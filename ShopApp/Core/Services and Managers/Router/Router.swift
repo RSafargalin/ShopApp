@@ -65,7 +65,6 @@ class RouterImpl: Router {
         case .Profile(let product):
             let profileController = ProductProfileViewController(product: product)
             controller.navigationController?.pushViewController(profileController, animated: true)
-//            show(ProductProfileViewController.self, from: controller, with: displayMode, with: navigationController)
         }
         
     }

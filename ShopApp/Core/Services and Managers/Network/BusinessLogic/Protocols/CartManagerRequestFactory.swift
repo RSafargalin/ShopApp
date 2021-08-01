@@ -15,12 +15,14 @@ protocol CartManagerRequestFactory {
     
     func add(productId: ProductId,
              with quantity: Quantity,
+             for userId: Int,
              completion: @escaping (AFDataResponse<Response<ProductAddedToCard>>) -> Void)
     
     func remove(productId: ProductId,
+                for userId: Int,
                 completion: @escaping (AFDataResponse<Response<ProductRemoveFromCart>>) -> Void)
     
-    func pay(completion: @escaping (AFDataResponse<Response<PaingCart>>) -> Void)
+    func pay(for userId: Int, completion: @escaping (AFDataResponse<Response<PaingCart>>) -> Void)
     
     func fetchProductsOnCart(completion: @escaping (AFDataResponse<Response<ProductsOnCart>>) -> Void)
 }

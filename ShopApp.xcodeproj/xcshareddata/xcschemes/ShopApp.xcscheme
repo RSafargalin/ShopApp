@@ -29,11 +29,11 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:ShopApp/Testplanes/All.xctestplan">
+            reference = "container:ShopApp/Testplanes/All.xctestplan"
+            default = "YES">
          </TestPlanReference>
          <TestPlanReference
-            reference = "container:ShopApp/Testplanes/Unit.xctestplan"
-            default = "YES">
+            reference = "container:ShopApp/Testplanes/Unit.xctestplan">
          </TestPlanReference>
          <TestPlanReference
             reference = "container:ShopApp/Testplanes/UI.xctestplan">
@@ -85,7 +85,7 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "-FIRDebugEnabled"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>
