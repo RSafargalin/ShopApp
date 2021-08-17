@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-
+import FirebaseCrashlytics
 ///
 /// - Warning: You need to override the loadview method and, after calling the super method, assign the view to your view, which implements the contentview protocol
 /// - example:
@@ -59,7 +59,12 @@ class UITextFieldsViewController: UIViewController {
     
     func setup() {
         let scrollViewTap = UITapGestureRecognizer(target: self, action: #selector(scrollViewTapped(_:)))
-        contentView?.scrollView.addGestureRecognizer(scrollViewTap)
+        guard let contentView = contentView else {
+            Crashlytics.crashlytics().setUserID(String(SessionData.shared.user.id))
+            Crashlytics.crashlytics().log("Failed to get safe view for UITextFieldsViewController")
+            fatalError()
+        }
+        contentView.scrollView.addGestureRecognizer(scrollViewTap)
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.largeTitleDisplayMode = .always
     }

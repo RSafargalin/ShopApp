@@ -12,11 +12,11 @@ class ShopAppCartManagerTests: XCTestCase {
     
     var requestFactory: RequestFactory?
     var cartManager: CartManager?
+    var personalArea: PersonalArea?
     
     override func setUpWithError() throws {
         requestFactory = RequestFactory()
         cartManager = requestFactory?.fetchRequestFactory()
-        
     }
 
     override func tearDownWithError() throws {
@@ -28,7 +28,7 @@ class ShopAppCartManagerTests: XCTestCase {
         let safeCatalog = try fetchSafeRequestFactory()
         let expectation = expectation(description: #function)
         
-        safeCatalog.add(productId: 1, with: 1) { response in
+        safeCatalog.add(productId: 1, with: 1, for: 1) { response in
             switch response.result {
             case .success(let result):
                 XCTAssertNotNil(result.response.result, "Product result is nil")
@@ -47,12 +47,22 @@ class ShopAppCartManagerTests: XCTestCase {
         let safeCatalog = try fetchSafeRequestFactory()
         let expectation = expectation(description: #function)
         
-        safeCatalog.remove(productId: 1) { response in
+        safeCatalog.add(productId: 1, with: 1, for: 2) { response in
             switch response.result {
             case .success(let result):
                 XCTAssertNotNil(result.response.result, "Product result is nil")
                 XCTAssertEqual(result.response.result, TestConstant.Server.Response.goodResultCode)
-                expectation.fulfill()
+                safeCatalog.remove(productId: 1, for: 2) { response in
+                    switch response.result {
+                    case .success(let result):
+                        XCTAssertNotNil(result.response.result, "Product result is nil")
+                        XCTAssertEqual(result.response.result, TestConstant.Server.Response.goodResultCode)
+                        expectation.fulfill()
+                        
+                    case .failure(let error):
+                        XCTFail(error.localizedDescription)
+                    }
+                }
                 
             case .failure(let error):
                 XCTFail(error.localizedDescription)
@@ -66,7 +76,7 @@ class ShopAppCartManagerTests: XCTestCase {
         let safeCatalog = try fetchSafeRequestFactory()
         let expectation = expectation(description: #function)
         
-        safeCatalog.pay() { response in
+        safeCatalog.pay(for: 1) { response in
             switch response.result {
             case .success(let result):
                 XCTAssertNotNil(result.response.result, "Product result is nil")

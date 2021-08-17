@@ -7,6 +7,8 @@
 
 import Foundation
 import UIKit
+//import FirebaseCrashlytics
+import FirebaseAnalytics
 
 // MARK: - SignInViewController
 
@@ -30,10 +32,11 @@ final class SignInViewController: UITextFieldsViewController {
         super.viewDidLoad()
         setup()
         
-        #if targetEnvironment(simulator)
-        contentView.usernameContainerView.setText("LewisHamilton")
-        contentView.passwordContainerView.setText("stillirise")
-        #endif
+        // Закоментировано для прохождения UI-тестов
+//        #if targetEnvironment(simulator)
+//        contentView.usernameContainerView.setText("LewisHamilton")
+//        contentView.passwordContainerView.setText("stillirise")
+//        #endif
     }
     
     // MARK: - Init
@@ -93,12 +96,19 @@ final class SignInViewController: UITextFieldsViewController {
             
             switch response.result {
             case .success(let result):
+                Analytics.logEvent(AnalyticsEventLogin, parameters: [
+                    AnalyticsParameterMethod: self?.method as Any,
+                    "username" : username
+                ])
                 DispatchQueue.main.async {
                     SessionData.shared.user = result.response.user
                     self?.router.show(screen: .MainTabBar, with: .present, with: false)
                 }
                 
             case .failure(let error):
+                Analytics.logEvent("SignInError", parameters: [
+                    "username" : username
+                ])
                 logging(error.localizedDescription)
             }
         }

@@ -54,7 +54,7 @@ final class SignInView: UIView, ContentView {
         scrollView.addSubview(stackView)
         
         stackView.axis = .vertical
-        stackView.spacing = 15
+        stackView.spacing = Constant.Sizes.Default.spacing.rawValue
         stackView.addArrangedSubview(usernameContainerView)
         stackView.addArrangedSubview(passwordContainerView)
         stackView.addArrangedSubview(signInButton)
@@ -65,7 +65,7 @@ final class SignInView: UIView, ContentView {
         signInButton.tintColor = .white
         signInButton.backgroundColor = .accentColor
         signInButton.translatesAutoresizingMaskIntoConstraints = false
-        signInButton.layer.cornerRadius = 10
+        signInButton.layer.cornerRadius = Constant.Sizes.Default.Layer.cornerRadius.rawValue
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -85,7 +85,7 @@ final class SignInView: UIView, ContentView {
             stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor,
                                               constant: self.layoutMargins.top),
             
-            signInButton.heightAnchor.constraint(equalToConstant: 44),
+            signInButton.heightAnchor.constraint(equalToConstant: Constant.Sizes.Default.Button.TapAreaSize.rawValue),
         ])
 
     }

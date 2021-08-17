@@ -12,13 +12,18 @@ struct SessionData {
     static var shared: SessionData = SessionData()
     private init() {}
     
-    var user: User = User(id: 1,
-                          username: "LewisHamilton",
-                          password: "stillirise",
-                          firstName: "Lewis",
-                          surname: "Hamilton",
+    var user: User = User(id: -1,
+                          username: "username",
+                          password: "password",
+                          firstName: "firstName",
+                          surname: "surname",
                           email: "stub@email.com",
                           gender: false,
                           creditCard: "none",
                           cart: [:])
+
+    enum RegularExpressions {
+        static let IntAndNotZero = ValidationManager().fetchRegularExpression(for: .IntAndNotZero)
+    }
+    
 }

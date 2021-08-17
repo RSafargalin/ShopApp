@@ -65,7 +65,6 @@ class RouterImpl: Router {
         case .Profile(let product):
             let profileController = ProductProfileViewController(product: product)
             controller.navigationController?.pushViewController(profileController, animated: true)
-//            show(ProductProfileViewController.self, from: controller, with: displayMode, with: navigationController)
         }
         
     }
@@ -138,9 +137,10 @@ class RouterImpl: Router {
         
         let userProfileController = flowsBuilder.build(flow: .UserProfile)
         let catalogController = flowsBuilder.build(flow: .Catalog)
+        let cartController = flowsBuilder.build(flow: .Cart)
         
         guard let mainTabBarController = flowsBuilder
-                .build(flow: .MainTabBar([userProfileController, catalogController])) as? UITabBarController
+                .build(flow: .MainTabBar([userProfileController, catalogController, cartController])) as? UITabBarController
         else { return UITabBarController() }
         
         return mainTabBarController

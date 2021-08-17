@@ -30,23 +30,35 @@ extension CartManager: CartManagerRequestFactory {
     
     func add(productId: ProductId,
              with quantity: ProductQuantity,
+             for userId: Int,
              completion: @escaping (AFDataResponse<Response<ProductAddedToCard>>) -> Void) {
         
-        let requestModel = AddProductToCart(baseUrl: baseUrl, productId: productId, quantity: quantity, userId: SessionData.shared.user.id)
+        let requestModel = AddProductToCart(baseUrl: baseUrl,
+                                            productId: productId,
+                                            quantity: quantity,
+                                            userId: userId)
         self.request(request: requestModel, completionHandler: completion)
         
     }
     
     func remove(productId: ProductId,
+                for userId: Int,
                 completion: @escaping (AFDataResponse<Response<ProductRemoveFromCart>>) -> Void) {
         
-        let requestModel = RemoveProductFromCart(baseUrl: baseUrl, productId: productId, userId: SessionData.shared.user.id)
+        let requestModel = RemoveProductFromCart(baseUrl: baseUrl,
+                                                 productId: productId,
+                                                 userId: userId)
         self.request(request: requestModel, completionHandler: completion)
         
     }
     
-    func pay(completion: @escaping (AFDataResponse<Response<PaingCart>>) -> Void) {
-        let requestModel = PayCart(baseUrl: baseUrl, userId: SessionData.shared.user.id)
+    func pay(for userId: Int, completion: @escaping (AFDataResponse<Response<PaingCart>>) -> Void) {
+        let requestModel = PayCart(baseUrl: baseUrl, userId: userId)
+        self.request(request: requestModel, completionHandler: completion)
+    }
+    
+    func fetchProductsOnCart(completion: @escaping (AFDataResponse<Response<ProductsOnCart>>) -> Void) {
+        let requestModel = FetchProductsOnCart(baseUrl: baseUrl, userId: SessionData.shared.user.id)
         self.request(request: requestModel, completionHandler: completion)
     }
 
@@ -90,6 +102,19 @@ extension CartManager {
         let baseUrl: URL
         let method: HTTPMethod = .get
         let path: String = Constant.CartManager.Pay.path.rawValue
+        
+        let userId: Int
+        var parameters: Parameters? {
+            return [
+                Constant.CartManager.Parameters.userId.rawValue: userId
+            ]
+        }
+    }
+    
+    struct FetchProductsOnCart: RequestRouter {
+        let baseUrl: URL
+        let method: HTTPMethod = .get
+        let path: String = Constant.CartManager.ProductsOnCart.path.rawValue
         
         let userId: Int
         var parameters: Parameters? {

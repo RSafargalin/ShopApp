@@ -19,7 +19,10 @@ extension UIButton {
     
     // MARK: Public methods
     
-    func set(_ state: ButtonState, enabledColor: UIColor = .accentColor, disabledColor: UIColor = .darkGray) {
+    func set(_ state: ButtonState, enabledColor: UIColor = .accentColor, disabledColor: UIColor = .darkGray, sleep time: UInt32 = 0) {
+        if time > 0 {
+            sleep(time)
+        }
         
         switch state {
         case .enabled:

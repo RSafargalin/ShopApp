@@ -15,10 +15,14 @@ class PersonalArea: AbstractRequestFactory {
     let queue: DispatchQueue
     let baseUrl = Constant.PersonalArea.baseUrl
     
-    required init(errorParser: AbstractErrorParser, sessionManager: Session, queue: DispatchQueue = DispatchQueue.global(qos: .utility)) {
+    required init(errorParser: AbstractErrorParser,
+                  sessionManager: Session,
+                  queue: DispatchQueue = DispatchQueue.global(qos: .utility)) {
+        
         self.errorParser = errorParser
         self.sessionManager = sessionManager
         self.queue = queue
+        
     }
 }
 

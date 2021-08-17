@@ -8,13 +8,18 @@
 import Foundation
 import UIKit
 
-class ProductProfileView: UIView {
+class ProductProfileView: UIView, ContentView {
+    
+    // MARK: - Public Variables
+    
+    let scrollView: UIScrollView
     
     // MARK: - Private Variables
     
+    private let validationManager: ValidationManager
     private let reviewsManager: ReviewManager
     private var reviews = [Review]()
-    private let product: Product
+    private let parent: ProductProfileViewControllerProtocol?
     
     private let reviewsLabel: UILabel
     private let reviewsCollection: UICollectionView
@@ -25,18 +30,29 @@ class ProductProfileView: UIView {
     
     private let viewPlugForEmptyReviews: ViewPlugForEmptyTable = ViewPlugForEmptyTable()
     
+    private let addProductToCartLabel: UILabel
+    private let productCountField: UITextField
+    let addProductToCartButton: UIButton
+    
+    private var productQuantity: Int
     
     // MARK: - Init
     
-    required init(product: Product) {
+    required init(parent: ProductProfileViewControllerProtocol) {
+        self.scrollView = UIScrollView()
         let requestFactory = RequestFactory()
         self.reviewsManager = requestFactory.fetchRequestFactory()
+        self.validationManager = ValidationManager()
         self.reviewsLabel = UILabel()
         self.reviewsCollection = UICollectionView(frame: CGRect(), collectionViewLayout: UICollectionViewLayout())
         self.productInfoLabel = UILabel()
         self.productPriceLabel = UILabel()
         self.productPriceIcon = UIImageView(image: UIImage(systemName: "rublesign.square"))
-        self.product = product
+        self.addProductToCartLabel = UILabel()
+        self.productCountField = UITextField()
+        self.addProductToCartButton = UIButton()
+        self.parent = parent
+        self.productQuantity = 0
         super.init(frame: CGRect())
         setup()
     }
@@ -77,7 +93,8 @@ class ProductProfileView: UIView {
         reviewsCollection.delegate = self
         reviewsCollection.dataSource = self
         reviewsCollection.register(ReviewCell.self, forCellWithReuseIdentifier: ReviewCell.identifier)
-        productPriceLabel.text = product.getPriceInStringFormat()
+        addProductToCartButton.set(.disabled)
+        productCountField.delegate = self
         
         configureUI()
         
@@ -88,25 +105,52 @@ class ProductProfileView: UIView {
         backgroundColor = .systemBackground
         reviewsCollection.backgroundColor = .systemBackground
         
-        addSubview(productInfoLabel)
-        addSubview(productPriceIcon)
-        addSubview(productPriceLabel)
-        addSubview(reviewsLabel)
-        addSubview(reviewsCollection)
-        addSubview(viewPlugForEmptyReviews)
+        addSubview(scrollView)
         
+        scrollView.addSubview(productInfoLabel)
+        scrollView.addSubview(productPriceIcon)
+        scrollView.addSubview(productPriceLabel)
+        
+        scrollView.addSubview(reviewsLabel)
+        scrollView.addSubview(reviewsCollection)
+        
+        scrollView.addSubview(viewPlugForEmptyReviews)
+        
+        scrollView.addSubview(addProductToCartLabel)
+        scrollView.addSubview(productCountField)
+        scrollView.addSubview(addProductToCartButton)
+        
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
         viewPlugForEmptyReviews.translatesAutoresizingMaskIntoConstraints = false
         productInfoLabel.translatesAutoresizingMaskIntoConstraints = false
         productPriceLabel.translatesAutoresizingMaskIntoConstraints = false
         productPriceIcon.translatesAutoresizingMaskIntoConstraints = false
         reviewsLabel.translatesAutoresizingMaskIntoConstraints = false
         reviewsCollection.translatesAutoresizingMaskIntoConstraints = false
+        addProductToCartLabel.translatesAutoresizingMaskIntoConstraints = false
+        productCountField.translatesAutoresizingMaskIntoConstraints = false
+        addProductToCartButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        productCountField.keyboardType = .numberPad
+        productCountField.borderStyle = .roundedRect
+        productCountField.placeholder = "Quantity of goods..."
+        productCountField.addTarget(self, action: #selector(textFieldChangeValue), for: .allEditingEvents)
+        productCountField.isUserInteractionEnabled = true
+        
+        addProductToCartButton.setImage(UIImage(systemName: "cart.fill.badge.plus"), for: .normal)
+        addProductToCartButton.backgroundColor = .accentColor
+        addProductToCartButton.tintColor = .white
+        addProductToCartButton.layer.cornerRadius = Constant.Sizes.Default.Layer.cornerRadius.rawValue
+        addProductToCartButton.addTarget(self, action: #selector(addToCart), for: .touchUpInside)
         
         productInfoLabel.text = "Detail info"
         productInfoLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         
         reviewsLabel.text = "Reviews"
         reviewsLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        
+        addProductToCartLabel.text = "Add to cart..."
+        addProductToCartLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         
         reviewsCollection.collectionViewLayout = createCollectionViewLayout()
         reviewsCollection.showsHorizontalScrollIndicator = false
@@ -115,37 +159,72 @@ class ProductProfileView: UIView {
         
         NSLayoutConstraint.activate([
             
-            productInfoLabel.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor,
-                                                 constant: self.layoutMargins.top * 2),
-            productInfoLabel.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
-            productInfoLabel.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
+            scrollView.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            reviewsCollection.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            
+            productInfoLabel.topAnchor.constraint(equalTo: scrollView.topAnchor,
+                                                 constant: scrollView.layoutMargins.top * 4),
+            productInfoLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor,
+                                                      constant: scrollView.layoutMargins.left * 2),
+            productInfoLabel.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor,
+                                                       constant: scrollView.layoutMargins.left * 2),
             
             productPriceIcon.topAnchor.constraint(equalTo: productInfoLabel.layoutMarginsGuide.bottomAnchor,
                                                 constant: productInfoLabel.layoutMargins.top * 2),
-            productPriceIcon.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
+            productPriceIcon.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor,
+                                                      constant: scrollView.layoutMargins.left * 2),
             productPriceIcon.trailingAnchor.constraint(greaterThanOrEqualTo: productPriceLabel.leadingAnchor,
                                                        constant: -productPriceLabel.layoutMargins.left * 2),
-            productPriceIcon.widthAnchor.constraint(equalToConstant: 24),
-            productPriceIcon.heightAnchor.constraint(equalToConstant: 24),
+            productPriceIcon.widthAnchor.constraint(equalToConstant: Constant.Sizes.Default.Icon.ProductPrice.rawValue),
+            productPriceIcon.heightAnchor.constraint(equalToConstant: Constant.Sizes.Default.Icon.ProductPrice.rawValue),
             
             productPriceLabel.centerYAnchor.constraint(equalTo: productPriceIcon.centerYAnchor),
-            productPriceLabel.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
+            productPriceLabel.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor,
+                                                        constant: scrollView.layoutMargins.left * 2),
             productPriceLabel.heightAnchor.constraint(equalToConstant: Constant.Sizes.Label.rawValue),
             
             reviewsLabel.topAnchor.constraint(equalTo: productPriceLabel.bottomAnchor,
                                                    constant: productPriceLabel.layoutMargins.bottom * 2),
-            reviewsLabel.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
-            reviewsLabel.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
+            reviewsLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor,
+                                                  constant: scrollView.layoutMargins.left * 2),
+            reviewsLabel.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor,
+                                                   constant: scrollView.layoutMargins.left * 2),
             
             reviewsCollection.topAnchor.constraint(equalTo: reviewsLabel.bottomAnchor),
-            reviewsCollection.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            reviewsCollection.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            reviewsCollection.heightAnchor.constraint(equalToConstant: 230),
+            reviewsCollection.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            reviewsCollection.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            reviewsCollection.heightAnchor.constraint(equalToConstant: Constant.Sizes.Default.CollectionView.Reviews.height.rawValue),
             
             viewPlugForEmptyReviews.topAnchor.constraint(equalTo: reviewsLabel.bottomAnchor),
-            viewPlugForEmptyReviews.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            viewPlugForEmptyReviews.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            viewPlugForEmptyReviews.heightAnchor.constraint(equalToConstant: 230),
+            viewPlugForEmptyReviews.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            viewPlugForEmptyReviews.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            viewPlugForEmptyReviews.heightAnchor.constraint(equalToConstant: Constant.Sizes.Default.CollectionView.Reviews.height.rawValue),
+            
+            addProductToCartLabel.topAnchor.constraint(equalTo: reviewsCollection.bottomAnchor,
+                                                   constant: reviewsCollection.layoutMargins.bottom * 2),
+            addProductToCartLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor,
+                                                           constant: scrollView.layoutMargins.left * 2),
+            addProductToCartLabel.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor,
+                                                            constant: scrollView.layoutMargins.left * 2),
+            
+            productCountField.topAnchor.constraint(equalTo: addProductToCartLabel.bottomAnchor,
+                                                   constant: addProductToCartLabel.layoutMargins.bottom * 2),
+            productCountField.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor,
+                                                       constant: scrollView.layoutMargins.left * 2),
+            productCountField.trailingAnchor.constraint(equalTo: addProductToCartButton.layoutMarginsGuide.leadingAnchor,
+                                                        constant: -addProductToCartButton.layoutMargins.left * 2),
+            productCountField.heightAnchor.constraint(equalToConstant: Constant.Sizes.Default.Button.TapAreaSize.rawValue),
+            
+            addProductToCartButton.centerYAnchor.constraint(equalTo: productCountField.centerYAnchor),
+            addProductToCartButton.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor,
+                                                             constant: -scrollView.layoutMargins.left * 2),
+            addProductToCartButton.widthAnchor.constraint(equalToConstant: Constant.Sizes.Default.Button.AddProductToCartButton.width.rawValue),
+            addProductToCartButton.heightAnchor.constraint(equalToConstant: Constant.Sizes.Default.Button.AddProductToCartButton.height.rawValue),
+            addProductToCartButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor,
+                                                           constant: -scrollView.layoutMargins.bottom * 2)
             
         ])
         
@@ -160,13 +239,31 @@ class ProductProfileView: UIView {
                                                          right: layoutMargins.right * 2)
         
         collectionViewFlowLayout.itemSize = CGSize(width: (UIScreen.main.bounds.width - (self.layoutMargins.left * 4)),
-                                                   height: 200)
+                                                   height: Constant.Sizes.Default.CollectionView.Reviews.Item.height.rawValue)
     
         collectionViewFlowLayout.scrollDirection = .horizontal
         collectionViewFlowLayout.minimumLineSpacing = self.layoutMargins.left * 4
         
         return collectionViewFlowLayout
         
+    }
+    
+    @objc private func addToCart() {
+        guard let controller = parent,
+              productQuantity > 0 else { return }
+        controller.addProductToCart(in: productQuantity)
+    }
+    
+    @objc private func textFieldChangeValue() {
+        guard let text = productCountField.text,
+              validationManager.isValid(value: text, for: .IntAndNotZero),
+              let quantity = Int(text)
+        else {
+            addProductToCartButton.set(.disabled)
+            return
+        }
+        addProductToCartButton.set(.enabled)
+        productQuantity = quantity
     }
     
 }
@@ -197,4 +294,22 @@ extension ProductProfileView: UICollectionViewDelegate, UICollectionViewDataSour
         
     }
     
+}
+
+extension ProductProfileView: UITextFieldDelegate {
+
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if let text = textField.text, let textRange = Range(range, in: text) {
+            
+            let updatedText = text.replacingCharacters(in: textRange, with: string)
+            if updatedText.isEmpty { return true }
+            return validationManager.isValid(value: updatedText, for: .IntAndNotZero)
+            
+        }
+        return true
+        
+    }
+
 }

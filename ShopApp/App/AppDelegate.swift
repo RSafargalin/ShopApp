@@ -5,18 +5,15 @@
 //  Created by Ruslan Safargalin on 19.06.2021.
 //
 
-/*
- Автор иконок: DinosoftLabs
- https://www.flaticon.com/ru/authors/dinosoftlabs
- */
-
 import UIKit
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        FirebaseApp.configure()
         return true
     }
 

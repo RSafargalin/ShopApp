@@ -7,11 +7,19 @@
 
 import Foundation
 import UIKit
+import FirebaseAnalytics
 
-class ProductProfileViewController: UIViewController {
+protocol ProductProfileViewControllerProtocol {
+
+    func addProductToCart(in quantity: Int)
+    
+}
+
+class ProductProfileViewController: UITextFieldsViewController {
     
     // MARK: - Private Variables
     private let reviewsManager: ReviewManager
+    private let cartManager: CartManager
     private let product: Product
     private var contentView: ProductProfileView {
         return transformView(to: ProductProfileView.self)
@@ -20,13 +28,19 @@ class ProductProfileViewController: UIViewController {
     // MARK: - Life Cycle
     
     override func loadView() {
-        self.view = ProductProfileView(product: product)
+        self.view = ProductProfileView(parent: self)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         fetchReviewForProduct()
+        contentView.setPrice(from: product)
+        Analytics.logEvent("ProductProfile", parameters: [
+            AnalyticsParameterMethod: self.method as Any,
+            "username" : SessionData.shared.user.username,
+            "productId" : product.id
+        ])
     }
     
     // MARK: - Init
@@ -35,7 +49,8 @@ class ProductProfileViewController: UIViewController {
         self.product = product
         let requestFactory = RequestFactory()
         self.reviewsManager = requestFactory.fetchRequestFactory()
-        super.init(nibName: nil, bundle: nil)
+        self.cartManager = requestFactory.fetchRequestFactory()
+        super.init()
     }
     
     required init?(coder: NSCoder) {
@@ -44,8 +59,9 @@ class ProductProfileViewController: UIViewController {
     
     // MARK: - Private Methods
     
-    private func setup() {
+    override func setup() {
         self.navigationItem.title = product.name
+        super.setup()
     }
     
     private func fetchReviewForProduct() {
@@ -67,4 +83,32 @@ class ProductProfileViewController: UIViewController {
             }
         }
     }
+}
+
+extension ProductProfileViewController: ProductProfileViewControllerProtocol {
+    
+    func addProductToCart(in quantity: Int) {
+        DispatchQueue.main.async {
+            self.contentView.addProductToCartButton.set(.disabled)
+        }
+        cartManager.add(productId: product.id, with: quantity, for: SessionData.shared.user.id) { [weak self] response in
+            DispatchQueue.main.async {
+                self?.contentView.addProductToCartButton.set(.enabled, sleep: 1)
+            }
+            switch response.result {
+            case .success(_):
+                Analytics.logEvent(AnalyticsEventAddToCart, parameters: [
+                    AnalyticsParameterMethod: self?.method as Any,
+                    "username" : SessionData.shared.user.username,
+                    "productId" : self?.product.id ?? -1
+                ])
+                break
+                
+            case .failure(let error):
+                logging(error.localizedDescription)
+            }
+        }
+        
+    }
+    
 }
