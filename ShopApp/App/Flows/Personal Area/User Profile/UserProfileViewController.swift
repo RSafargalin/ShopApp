@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import FirebaseAnalytics
 
 protocol UserProfileViewControllerDelegate {
     func updateUserData()
@@ -19,7 +20,7 @@ class UserProfileViewController: UIViewController {
     private lazy var router: Router = RouterImpl(for: self)
     private let personalArea: PersonalArea
     private var contentView: UserProfileView {
-        return self.view as! UserProfileView
+        return transformView(to: UserProfileView.self)
     }
     
     // MARK: - Life cycle
@@ -51,10 +52,18 @@ class UserProfileViewController: UIViewController {
     
     func setup() {
         
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        
         updateUserData()
         
-        let changeDataBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(goToChangeUserData))
-        let logoutBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logout))
+        let changeDataBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit,
+                                                      target: self,
+                                                      action: #selector(goToChangeUserData))
+        
+        let logoutBarButtonItem = UIBarButtonItem(title: "Logout",
+                                                  style: .plain,
+                                                  target: self,
+                                                  action: #selector(logout))
         
         self.navigationItem.rightBarButtonItem = changeDataBarButtonItem
         self.navigationItem.leftBarButtonItem = logoutBarButtonItem
@@ -73,11 +82,19 @@ class UserProfileViewController: UIViewController {
                 self?.navigationItem.leftBarButtonItem?.isEnabled = true
                 switch response.result {
                 case .success(_):
-                    self?.router.show(screen: .SignIn, with: .set, with: false)
+                    self?.router.show(screen: .SignIn, with: .present, with: true)
+                    Analytics.logEvent("LogoutSuccess", parameters: [
+                        AnalyticsParameterMethod: self?.method as Any,
+                        "username" : SessionData.shared.user.username
+                    ])
                     
                     
                 case .failure(let error):
-                    print(error)
+                    logging(error.localizedDescription)
+                    Analytics.logEvent("LogoutError", parameters: [
+                        AnalyticsParameterMethod: self?.method as Any,
+                        "username" : SessionData.shared.user.username
+                    ])
                 }
             }
         }
@@ -90,8 +107,7 @@ extension UserProfileViewController: UserProfileViewControllerDelegate {
     func updateUserData() {
         
         let user = SessionData.shared.user
-        self.navigationItem.title = "\(user.firstName) \(user.surname)"
-        self.navigationItem.prompt = user.username
+        self.navigationItem.title = user.fullName
         
         contentView.setGender(user.gender)
         contentView.setCreditCatd(user.creditCard)

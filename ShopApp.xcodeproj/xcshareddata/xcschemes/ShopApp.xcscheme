@@ -29,11 +29,11 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:ShopApp/Testplanes/All.xctestplan">
+            reference = "container:ShopApp/Testplanes/All.xctestplan"
+            default = "YES">
          </TestPlanReference>
          <TestPlanReference
-            reference = "container:ShopApp/Testplanes/Unit.xctestplan"
-            default = "YES">
+            reference = "container:ShopApp/Testplanes/Unit.xctestplan">
          </TestPlanReference>
          <TestPlanReference
             reference = "container:ShopApp/Testplanes/UI.xctestplan">
@@ -82,6 +82,12 @@
             ReferencedContainer = "container:ShopApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "-FIRDebugEnabled"
+            isEnabled = "NO">
+         </CommandLineArgument>
+      </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

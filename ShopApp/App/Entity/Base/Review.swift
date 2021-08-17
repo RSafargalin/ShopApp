@@ -9,7 +9,7 @@ import Foundation
 
 struct Review: Codable {
     var id: Int
-    var userId: Int
+    var user: String
     var productId: Int
     var message: String
 }

@@ -62,19 +62,19 @@ final class UserProfileView: UIView {
         creditCardLabel.translatesAutoresizingMaskIntoConstraints = false
         creditCardIcon.translatesAutoresizingMaskIntoConstraints = false
         
-        creditCardIcon.tintColor = .black
-        
         NSLayoutConstraint.activate([
             genderLabel.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
             genderLabel.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
             genderLabel.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
             genderLabel.heightAnchor.constraint(equalToConstant: Constant.Sizes.Label.rawValue),
             
-            creditCardIcon.topAnchor.constraint(equalTo: genderLabel.layoutMarginsGuide.bottomAnchor, constant: genderLabel.layoutMargins.bottom * 2),
+            creditCardIcon.topAnchor.constraint(equalTo: genderLabel.layoutMarginsGuide.bottomAnchor,
+                                                constant: genderLabel.layoutMargins.bottom * 2),
             creditCardIcon.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
-            creditCardIcon.trailingAnchor.constraint(greaterThanOrEqualTo: creditCardLabel.leadingAnchor, constant: -creditCardLabel.layoutMargins.left * 2),
-            creditCardIcon.widthAnchor.constraint(equalToConstant: 36),
-            creditCardIcon.heightAnchor.constraint(equalToConstant: 24),
+            creditCardIcon.trailingAnchor.constraint(greaterThanOrEqualTo: creditCardLabel.leadingAnchor,
+                                                     constant: -creditCardLabel.layoutMargins.left * 2),
+            creditCardIcon.widthAnchor.constraint(equalToConstant: Constant.Sizes.Default.Icon.CreditCard.width.rawValue),
+            creditCardIcon.heightAnchor.constraint(equalToConstant: Constant.Sizes.Default.Icon.CreditCard.height.rawValue),
             
             creditCardLabel.centerYAnchor.constraint(equalTo: creditCardIcon.centerYAnchor),
             creditCardLabel.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),

@@ -38,7 +38,8 @@ final class ChangeUserDataView: UIView, ContentView {
         surnameContainerView = DefaultContainerForTextFieldWithLabel(with: "Surname", and: "Surname...")
         emailContainerView = DefaultContainerForTextFieldWithLabel(with: "Email", and: "Email...")
         sexContainerView = DefaultSexSelectionContainerView()
-        creditCardContainerView = DefaultContainerForTextFieldWithLabel(with: "Credit card number", and: "Credit card number...")
+        creditCardContainerView = DefaultContainerForTextFieldWithLabel(with: "Credit card number",
+                                                                        and: "Credit card number...")
         signUpButton = UIButton()
         super.init(frame: frame)
         self.configureUI()
@@ -58,7 +59,7 @@ final class ChangeUserDataView: UIView, ContentView {
         scrollView.addSubview(stackView)
         
         stackView.axis = .vertical
-        stackView.spacing = 15
+        stackView.spacing = Constant.Sizes.Default.spacing.rawValue
         stackView.addArrangedSubview(usernameContainerView)
         stackView.addArrangedSubview(emailContainerView)
         stackView.addArrangedSubview(firstNameContainerView)
@@ -72,7 +73,7 @@ final class ChangeUserDataView: UIView, ContentView {
         signUpButton.tintColor = .white
         signUpButton.backgroundColor = .accentColor
         signUpButton.translatesAutoresizingMaskIntoConstraints = false
-        signUpButton.layer.cornerRadius = 10
+        signUpButton.layer.cornerRadius = Constant.Sizes.Default.Layer.cornerRadius.rawValue
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -83,12 +84,16 @@ final class ChangeUserDataView: UIView, ContentView {
             scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
 
             stackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: self.layoutMargins.left * 2),
-            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -self.layoutMargins.left * 2),
-            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: self.layoutMargins.top),
-            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -self.layoutMargins.top * 2),
+            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor,
+                                               constant: self.layoutMargins.left * 2),
+            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor,
+                                                constant: -self.layoutMargins.left * 2),
+            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor,
+                                           constant: self.layoutMargins.top),
+            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor,
+                                              constant: -self.layoutMargins.top * 2),
             
-            signUpButton.heightAnchor.constraint(equalToConstant: 44),
+            signUpButton.heightAnchor.constraint(equalToConstant: Constant.Sizes.Default.Button.TapAreaSize.rawValue),
         ])
 
     }

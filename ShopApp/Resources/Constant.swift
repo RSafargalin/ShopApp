@@ -7,13 +7,14 @@
 
 import Foundation
 import UIKit
+import Alamofire
 
 struct Constant {
     
     // MARK: - Personal Area
     
     enum PersonalArea {
-        static let baseUrl: URL = URL(string: "https://vast-dusk-53457.herokuapp.com/")!
+        static var baseUrl: URL = URL.getBaseURL()
         
         enum Parameters: String {
             case id = "id",
@@ -23,8 +24,7 @@ struct Constant {
                  surname = "surname",
                  email = "email",
                  gender = "gender",
-                 creditCard = "creditCard",
-                 bio = "bio"
+                 creditCard = "creditCard"
         }
         
         enum SignIn: String {
@@ -47,7 +47,7 @@ struct Constant {
     // MARK: - Catalog
     
     enum Catalog {
-        static let baseUrl: URL = URL(string: "https://vast-dusk-53457.herokuapp.com/")!
+        static let baseUrl: URL = URL.getBaseURL()
         
         enum Products: String {
             case path = "products"
@@ -65,11 +65,11 @@ struct Constant {
     // MARK: - ReviewManager
     
     enum ReviewManager {
-        static let baseUrl: URL = URL(string: "https://vast-dusk-53457.herokuapp.com/")!
+        static let baseUrl: URL = URL.getBaseURL()
         
         enum Parameters: String {
             case id,
-                 userId,
+                 user,
                  productId,
                  message,
                  reviewId
@@ -91,7 +91,7 @@ struct Constant {
     // MARK: - Cart Manager
     
     enum CartManager {
-        static let baseUrl: URL = URL(string: "https://vast-dusk-53457.herokuapp.com/")!
+        static let baseUrl: URL = URL.getBaseURL()
         
         enum Parameters: String {
             case productId,
@@ -109,6 +109,11 @@ struct Constant {
         
         enum Pay: String {
             case path = "cart.pay"
+            
+        }
+        
+        enum ProductsOnCart: String {
+            case path = "cart.products.forUser"
         }
     }
     
@@ -117,6 +122,43 @@ struct Constant {
     enum Sizes: CGFloat {
         case TextField = 44,
              Label = 20
+        
+        enum Default: CGFloat {
+            
+            case spacing = 15
+            
+            enum Button: CGFloat {
+                case TapAreaSize = 44.0
+                
+                enum AddProductToCartButton: CGFloat {
+                    case width = 88,
+                         height = 44
+                }
+            }
+            
+            enum CollectionView {
+                enum Reviews: CGFloat {
+                    case height = 230
+                    
+                    enum Item: CGFloat {
+                        case height = 200
+                    }
+                }
+            }
+            
+            enum Icon: CGFloat {
+                enum CreditCard: CGFloat {
+                    case width = 36,
+                         height = 24
+                }
+                
+                case ProductPrice = 24
+            }
+            
+            enum Layer: CGFloat {
+                case cornerRadius = 10
+            }
+        }
     }
     
     // MARK: - Margins

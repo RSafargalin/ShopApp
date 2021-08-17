@@ -54,16 +54,18 @@ final class SignInView: UIView, ContentView {
         scrollView.addSubview(stackView)
         
         stackView.axis = .vertical
-        stackView.spacing = 15
+        stackView.spacing = Constant.Sizes.Default.spacing.rawValue
         stackView.addArrangedSubview(usernameContainerView)
         stackView.addArrangedSubview(passwordContainerView)
         stackView.addArrangedSubview(signInButton)
     
+        passwordContainerView.isSecureTextField(true)
+        
         signInButton.setTitle("Join", for: .normal)
         signInButton.tintColor = .white
         signInButton.backgroundColor = .accentColor
         signInButton.translatesAutoresizingMaskIntoConstraints = false
-        signInButton.layer.cornerRadius = 10
+        signInButton.layer.cornerRadius = Constant.Sizes.Default.Layer.cornerRadius.rawValue
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -74,12 +76,16 @@ final class SignInView: UIView, ContentView {
             scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
 
             stackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: self.layoutMargins.left * 2),
-            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -self.layoutMargins.left * 2),
-            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: self.layoutMargins.top),
-            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: self.layoutMargins.top),
+            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor,
+                                               constant: self.layoutMargins.left * 2),
+            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor,
+                                                constant: -self.layoutMargins.left * 2),
+            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor,
+                                           constant: self.layoutMargins.top),
+            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor,
+                                              constant: self.layoutMargins.top),
             
-            signInButton.heightAnchor.constraint(equalToConstant: 44),
+            signInButton.heightAnchor.constraint(equalToConstant: Constant.Sizes.Default.Button.TapAreaSize.rawValue),
         ])
 
     }

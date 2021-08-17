@@ -56,15 +56,18 @@ class DefaultSexSelectionContainerView: UIView {
     private func configureUI() {
 
         NSLayoutConstraint.activate([
-            label.centerYAnchor.constraint(equalTo: segmentedControl.centerYAnchor),
+            
+            label.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
             label.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
-            label.trailingAnchor.constraint(greaterThanOrEqualTo: segmentedControl.layoutMarginsGuide.trailingAnchor,
-                                            constant: label.layoutMargins.right * 2),
+            label.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
             label.heightAnchor.constraint(equalToConstant: Constant.Sizes.Label.rawValue),
             
-            segmentedControl.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
+            segmentedControl.topAnchor.constraint(equalTo: label.bottomAnchor,
+                                                  constant: Constant.Margins.TextFieldFromLabel.rawValue),
+            segmentedControl.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
             segmentedControl.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
             segmentedControl.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor),
+            segmentedControl.heightAnchor.constraint(equalToConstant: Constant.Sizes.TextField.rawValue)
         ])
         
     }
