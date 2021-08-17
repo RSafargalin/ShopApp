@@ -59,7 +59,7 @@ final class ChangeUserDataView: UIView, ContentView {
         scrollView.addSubview(stackView)
         
         stackView.axis = .vertical
-        stackView.spacing = 15
+        stackView.spacing = Constant.Sizes.Default.spacing.rawValue
         stackView.addArrangedSubview(usernameContainerView)
         stackView.addArrangedSubview(emailContainerView)
         stackView.addArrangedSubview(firstNameContainerView)
@@ -73,7 +73,7 @@ final class ChangeUserDataView: UIView, ContentView {
         signUpButton.tintColor = .white
         signUpButton.backgroundColor = .accentColor
         signUpButton.translatesAutoresizingMaskIntoConstraints = false
-        signUpButton.layer.cornerRadius = 10
+        signUpButton.layer.cornerRadius = Constant.Sizes.Default.Layer.cornerRadius.rawValue
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -93,7 +93,7 @@ final class ChangeUserDataView: UIView, ContentView {
             stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor,
                                               constant: -self.layoutMargins.top * 2),
             
-            signUpButton.heightAnchor.constraint(equalToConstant: 44),
+            signUpButton.heightAnchor.constraint(equalToConstant: Constant.Sizes.Default.Button.TapAreaSize.rawValue),
         ])
 
     }

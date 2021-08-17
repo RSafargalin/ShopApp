@@ -91,7 +91,7 @@ extension ProductProfileViewController: ProductProfileViewControllerProtocol {
         DispatchQueue.main.async {
             self.contentView.addProductToCartButton.set(.disabled)
         }
-        cartManager.add(productId: product.id, with: quantity) { [weak self] response in
+        cartManager.add(productId: product.id, with: quantity, for: SessionData.shared.user.id) { [weak self] response in
             DispatchQueue.main.async {
                 self?.contentView.addProductToCartButton.set(.enabled, sleep: 1)
             }

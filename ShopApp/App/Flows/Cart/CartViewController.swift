@@ -95,7 +95,7 @@ class CartViewController: UIViewController {
 extension CartViewController: CartViewControllerProtocol {
     
     func removeFromCart(product id: Int) {
-        cartManager.remove(productId: id) { [weak self] response in
+        cartManager.remove(productId: id, for: SessionData.shared.user.id) { [weak self] response in
             switch response.result {
             case .success(_):
                 Analytics.logEvent(AnalyticsEventRemoveFromCart, parameters: [
@@ -121,7 +121,7 @@ extension CartViewController: CartViewControllerProtocol {
     
     func pay() {
         
-        cartManager.pay { [weak self] response in
+        cartManager.pay(for: SessionData.shared.user.id) { [weak self] response in
             switch response.result {
             case .success(let result):
                 Analytics.logEvent("Pay", parameters: [

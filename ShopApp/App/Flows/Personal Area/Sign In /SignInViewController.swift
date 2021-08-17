@@ -32,10 +32,11 @@ final class SignInViewController: UITextFieldsViewController {
         super.viewDidLoad()
         setup()
         
-        #if targetEnvironment(simulator)
-        contentView.usernameContainerView.setText("LewisHamilton")
-        contentView.passwordContainerView.setText("stillirise")
-        #endif
+        // Закоментировано для прохождения UI-тестов
+//        #if targetEnvironment(simulator)
+//        contentView.usernameContainerView.setText("LewisHamilton")
+//        contentView.passwordContainerView.setText("stillirise")
+//        #endif
     }
     
     // MARK: - Init
