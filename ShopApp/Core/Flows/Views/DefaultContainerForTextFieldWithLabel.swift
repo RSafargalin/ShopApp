@@ -66,6 +66,9 @@ class DefaultContainerForTextFieldWithLabel: UIView, ContainerForTextFieldWithLa
         label.translatesAutoresizingMaskIntoConstraints = false
         textField.translatesAutoresizingMaskIntoConstraints = false
         
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
+        
         configureUI()
         
     }

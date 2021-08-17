@@ -210,8 +210,6 @@ extension CartView: UITableViewDelegate, UITableViewDataSource {
 struct PaymentInfoControl_Preview: PreviewProvider {
     static var previews: some View {
         let view = CartView(parent: CartViewController())
-//                 view.descriptionLabel.text = "Ваш фамилия"
-//        view.infoTextField.text = "Введите вашу фамилию"
         return UIViewPreview(view)
             .previewLayout(.device)
     }

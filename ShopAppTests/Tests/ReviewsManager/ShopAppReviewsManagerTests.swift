@@ -42,25 +42,6 @@ class ShopAppReviewsManagerTests: XCTestCase {
         waitForExpectations(timeout: TestConstant.Server.WaitTime.ten.rawValue)
     }
     
-    func testRemoveReviewForProduct() throws {
-        let safeFactory = try fetchSafeReviewsManagerRequestFactory()
-        let expectation = expectation(description: #function)
-        
-        safeFactory.removeReview(with: 1, for: 1) { response in
-            switch response.result {
-            case .success(let result):
-                XCTAssertNotNil(result.response.result, "Product result is nil")
-                XCTAssertEqual(result.response.result, TestConstant.Server.Response.goodResultCode)
-                expectation.fulfill()
-                
-            case .failure(let error):
-                XCTFail(error.localizedDescription)
-            }
-        }
-        
-        waitForExpectations(timeout: TestConstant.Server.WaitTime.ten.rawValue)
-    }
-    
     func testAddReviewForProduct() throws {
         let safeFactory = try fetchSafeReviewsManagerRequestFactory()
         let expectation = expectation(description: #function)
@@ -79,6 +60,27 @@ class ShopAppReviewsManagerTests: XCTestCase {
         
         waitForExpectations(timeout: TestConstant.Server.WaitTime.ten.rawValue)
     }
+    
+    func testRemoveReviewForProduct() throws {
+        let safeFactory = try fetchSafeReviewsManagerRequestFactory()
+        let expectation = expectation(description: #function)
+        sleep(2)
+        safeFactory.removeReview(with: 1, for: 1) { response in
+            switch response.result {
+            case .success(let result):
+                XCTAssertNotNil(result.response.result, "Product result is nil")
+                XCTAssertEqual(result.response.result, TestConstant.Server.Response.goodResultCode)
+                expectation.fulfill()
+                
+            case .failure(let error):
+                XCTFail(error.localizedDescription)
+            }
+        }
+        
+        waitForExpectations(timeout: 20)
+    }
+    
+    
     
     private func fetchSafeReviewsManagerRequestFactory() throws -> ReviewManagerRequestFactory {
         XCTAssertNotNil(reviewsManager, "Request factory is nil")

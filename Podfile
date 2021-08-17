@@ -7,6 +7,7 @@ target 'ShopApp' do
 
   # Pods for ShopApp
   pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
   pod 'Alamofire'
 
     target 'ShopAppTests' do

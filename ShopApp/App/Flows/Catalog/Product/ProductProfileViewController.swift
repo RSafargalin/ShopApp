@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import FirebaseAnalytics
 
 protocol ProductProfileViewControllerProtocol {
 
@@ -35,6 +36,11 @@ class ProductProfileViewController: UITextFieldsViewController {
         setup()
         fetchReviewForProduct()
         contentView.setPrice(from: product)
+        Analytics.logEvent("ProductProfile", parameters: [
+            AnalyticsParameterMethod: self.method as Any,
+            "username" : SessionData.shared.user.username,
+            "productId" : product.id
+        ])
     }
     
     // MARK: - Init
@@ -85,12 +91,17 @@ extension ProductProfileViewController: ProductProfileViewControllerProtocol {
         DispatchQueue.main.async {
             self.contentView.addProductToCartButton.set(.disabled)
         }
-        cartManager.add(productId: product.id, with: quantity) { [weak self] response in
+        cartManager.add(productId: product.id, with: quantity, for: SessionData.shared.user.id) { [weak self] response in
             DispatchQueue.main.async {
                 self?.contentView.addProductToCartButton.set(.enabled, sleep: 1)
             }
             switch response.result {
             case .success(_):
+                Analytics.logEvent(AnalyticsEventAddToCart, parameters: [
+                    AnalyticsParameterMethod: self?.method as Any,
+                    "username" : SessionData.shared.user.username,
+                    "productId" : self?.product.id ?? -1
+                ])
                 break
                 
             case .failure(let error):

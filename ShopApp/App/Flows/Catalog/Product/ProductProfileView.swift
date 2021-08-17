@@ -140,7 +140,7 @@ class ProductProfileView: UIView, ContentView {
         addProductToCartButton.setImage(UIImage(systemName: "cart.fill.badge.plus"), for: .normal)
         addProductToCartButton.backgroundColor = .accentColor
         addProductToCartButton.tintColor = .white
-        addProductToCartButton.layer.cornerRadius = 10
+        addProductToCartButton.layer.cornerRadius = Constant.Sizes.Default.Layer.cornerRadius.rawValue
         addProductToCartButton.addTarget(self, action: #selector(addToCart), for: .touchUpInside)
         
         productInfoLabel.text = "Detail info"
@@ -163,17 +163,7 @@ class ProductProfileView: UIView, ContentView {
             scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-//            scrollView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
-            
-//            productInfoLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-//            productPriceIcon.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-//            productPriceLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-//            reviewsLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             reviewsCollection.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-//            viewPlugForEmptyReviews.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-//            addProductToCartLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-//            addProductToCartButton.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-//            productCountField.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             
             productInfoLabel.topAnchor.constraint(equalTo: scrollView.topAnchor,
                                                  constant: scrollView.layoutMargins.top * 4),
@@ -188,8 +178,8 @@ class ProductProfileView: UIView, ContentView {
                                                       constant: scrollView.layoutMargins.left * 2),
             productPriceIcon.trailingAnchor.constraint(greaterThanOrEqualTo: productPriceLabel.leadingAnchor,
                                                        constant: -productPriceLabel.layoutMargins.left * 2),
-            productPriceIcon.widthAnchor.constraint(equalToConstant: 24),
-            productPriceIcon.heightAnchor.constraint(equalToConstant: 24),
+            productPriceIcon.widthAnchor.constraint(equalToConstant: Constant.Sizes.Default.Icon.ProductPrice.rawValue),
+            productPriceIcon.heightAnchor.constraint(equalToConstant: Constant.Sizes.Default.Icon.ProductPrice.rawValue),
             
             productPriceLabel.centerYAnchor.constraint(equalTo: productPriceIcon.centerYAnchor),
             productPriceLabel.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor,
@@ -206,12 +196,12 @@ class ProductProfileView: UIView, ContentView {
             reviewsCollection.topAnchor.constraint(equalTo: reviewsLabel.bottomAnchor),
             reviewsCollection.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             reviewsCollection.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            reviewsCollection.heightAnchor.constraint(equalToConstant: 230),
+            reviewsCollection.heightAnchor.constraint(equalToConstant: Constant.Sizes.Default.CollectionView.Reviews.height.rawValue),
             
             viewPlugForEmptyReviews.topAnchor.constraint(equalTo: reviewsLabel.bottomAnchor),
             viewPlugForEmptyReviews.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             viewPlugForEmptyReviews.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            viewPlugForEmptyReviews.heightAnchor.constraint(equalToConstant: 230),
+            viewPlugForEmptyReviews.heightAnchor.constraint(equalToConstant: Constant.Sizes.Default.CollectionView.Reviews.height.rawValue),
             
             addProductToCartLabel.topAnchor.constraint(equalTo: reviewsCollection.bottomAnchor,
                                                    constant: reviewsCollection.layoutMargins.bottom * 2),
@@ -226,15 +216,13 @@ class ProductProfileView: UIView, ContentView {
                                                        constant: scrollView.layoutMargins.left * 2),
             productCountField.trailingAnchor.constraint(equalTo: addProductToCartButton.layoutMarginsGuide.leadingAnchor,
                                                         constant: -addProductToCartButton.layoutMargins.left * 2),
-            productCountField.heightAnchor.constraint(equalToConstant: 44),
-//            productCountField.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor,
-//                                                      constant: -scrollView.layoutMargins.bottom * 4),
+            productCountField.heightAnchor.constraint(equalToConstant: Constant.Sizes.Default.Button.TapAreaSize.rawValue),
             
             addProductToCartButton.centerYAnchor.constraint(equalTo: productCountField.centerYAnchor),
             addProductToCartButton.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor,
                                                              constant: -scrollView.layoutMargins.left * 2),
-            addProductToCartButton.widthAnchor.constraint(equalToConstant: 88),
-            addProductToCartButton.heightAnchor.constraint(equalToConstant: 44),
+            addProductToCartButton.widthAnchor.constraint(equalToConstant: Constant.Sizes.Default.Button.AddProductToCartButton.width.rawValue),
+            addProductToCartButton.heightAnchor.constraint(equalToConstant: Constant.Sizes.Default.Button.AddProductToCartButton.height.rawValue),
             addProductToCartButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor,
                                                            constant: -scrollView.layoutMargins.bottom * 2)
             
@@ -251,7 +239,7 @@ class ProductProfileView: UIView, ContentView {
                                                          right: layoutMargins.right * 2)
         
         collectionViewFlowLayout.itemSize = CGSize(width: (UIScreen.main.bounds.width - (self.layoutMargins.left * 4)),
-                                                   height: 200)
+                                                   height: Constant.Sizes.Default.CollectionView.Reviews.Item.height.rawValue)
     
         collectionViewFlowLayout.scrollDirection = .horizontal
         collectionViewFlowLayout.minimumLineSpacing = self.layoutMargins.left * 4
