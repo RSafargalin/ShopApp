@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import FirebaseAnalytics
 
 class ProductsViewController: UIViewController {
     
@@ -15,7 +16,7 @@ class ProductsViewController: UIViewController {
     private let catalogManager: Catalog
     
     private var contentView: ProductsView {
-        return self.view as! ProductsView
+        return transformView(to: ProductsView.self)
     }
     
     // MARK: - Init
@@ -33,7 +34,7 @@ class ProductsViewController: UIViewController {
     // MARK: - Life cycle
     
     override func loadView() {
-        self.view = ProductsView()
+        self.view = ProductsView(parent: self)
     }
     
     override func viewDidLoad() {
@@ -58,9 +59,17 @@ class ProductsViewController: UIViewController {
                     self?.contentView.setPlugView(state: .hide)
                     self?.contentView.update(products: result.response.products)
                 }
+                Analytics.logEvent("FetchProductsSuccess", parameters: [
+                    AnalyticsParameterMethod: self?.method as Any,
+                    "username" : SessionData.shared.user.username
+                ])
                 
             case .failure(let error):
-                print(error)
+                logging(error.localizedDescription)
+                Analytics.logEvent("FetchProductsError", parameters: [
+                    AnalyticsParameterMethod: self?.method as Any,
+                    "username" : SessionData.shared.user.username
+                ])
             }
         }
         

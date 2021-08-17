@@ -10,6 +10,10 @@ import UIKit
 
 class ProductsView: UIView {
     
+    // MARK: - Public Variables
+    
+    weak var parent: UIViewController?
+    
     // MARK: - Private Variables
     
     private let tableView: UITableView
@@ -18,13 +22,13 @@ class ProductsView: UIView {
     
     // MARK: - Init
     
-    override init(frame: CGRect) {
+    init(parent: UIViewController) {
         
         tableView = UITableView()
         
-        super.init(frame: frame)
+        super.init(frame: CGRect())
         configureUI()
-        
+        self.parent = parent
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ProductCell.self, forCellReuseIdentifier: ProductCell.identifier)
@@ -95,7 +99,8 @@ extension ProductsView: UITableViewDelegate, UITableViewDataSource {
 
         var cell: ProductCell?
         
-        if let productCell = tableView.dequeueReusableCell(withIdentifier: ProductCell.identifier, for: indexPath) as? ProductCell {
+        if let productCell = tableView.dequeueReusableCell(withIdentifier: ProductCell.identifier,
+                                                           for: indexPath) as? ProductCell {
             cell = productCell
         } else {
             cell = ProductCell()
@@ -111,6 +116,12 @@ extension ProductsView: UITableViewDelegate, UITableViewDataSource {
         
         cell.configure(from: product)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let controller = parent else { return }
+        let product = products[indexPath.item]
+        RouterImpl(for: controller).show(screen: .Profile(product: product), with: .push)
     }
     
 }

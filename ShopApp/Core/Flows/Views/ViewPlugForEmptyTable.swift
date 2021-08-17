@@ -86,7 +86,8 @@ class ViewPlugForEmptyTable: UIView {
         
         NSLayoutConstraint.activate([
         
-            messageLabel.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: layoutMargins.top * 2),
+            messageLabel.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor,
+                                              constant: layoutMargins.top * 2),
             messageLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
             messageLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
             messageLabel.heightAnchor.constraint(equalToConstant: 20),

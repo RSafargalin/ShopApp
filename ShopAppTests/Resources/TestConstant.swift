@@ -18,7 +18,8 @@ struct TestConstant {
                  password = "stillirise",
                  email = "geekbrains@mail.com",
                  creditCard = "none",
-                 bio = "no1ne"
+                 firstName = "Lewis",
+                 surname = "Hamilton"
         }
         
         func d() {}

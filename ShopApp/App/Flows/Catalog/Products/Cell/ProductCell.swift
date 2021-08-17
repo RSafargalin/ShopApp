@@ -24,7 +24,7 @@ class ProductCell: UITableViewCell {
     public func configure(from product: Product) {
         if let textLabel = textLabel, let detailTextLabel = detailTextLabel {
             textLabel.text = product.name
-            detailTextLabel.text = "\(product.price) ₽"
+            detailTextLabel.text = product.getPriceInStringFormat()
             accessoryType = .disclosureIndicator
         }
     }

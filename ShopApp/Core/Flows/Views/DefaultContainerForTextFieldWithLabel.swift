@@ -48,6 +48,10 @@ class DefaultContainerForTextFieldWithLabel: UIView, ContainerForTextFieldWithLa
         textField.text = text
     }
     
+    func isSecureTextField(_ value: Bool) {
+        textField.isSecureTextEntry = value
+    }
+    
     // MARK: - Private methods
     
     private func setup(label text: String = "Undefined", with placeholder: String = "Placeholder...") {
@@ -61,6 +65,9 @@ class DefaultContainerForTextFieldWithLabel: UIView, ContainerForTextFieldWithLa
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         textField.translatesAutoresizingMaskIntoConstraints = false
+        
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
         
         configureUI()
         
@@ -77,7 +84,8 @@ class DefaultContainerForTextFieldWithLabel: UIView, ContainerForTextFieldWithLa
             label.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
             label.heightAnchor.constraint(equalToConstant: Constant.Sizes.Label.rawValue),
             
-            textField.topAnchor.constraint(equalTo: label.bottomAnchor, constant: Constant.Margins.TextFieldFromLabel.rawValue),
+            textField.topAnchor.constraint(equalTo: label.bottomAnchor,
+                                           constant: Constant.Margins.TextFieldFromLabel.rawValue),
             textField.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
             textField.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
             textField.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor),

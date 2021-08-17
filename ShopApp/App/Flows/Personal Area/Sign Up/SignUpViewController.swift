@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import FirebaseAnalytics
 
 // MARK: - SignInViewController
 
@@ -17,7 +18,7 @@ final class SignUpViewController: UITextFieldsViewController {
     private let flowsBuilder: FlowsElementBuilder
     private let personalArea: PersonalArea
     private var contentView: ChangeUserDataView {
-        return self.view as! ChangeUserDataView
+        return transformView(to: ChangeUserDataView.self)
     }
     
     // MARK: - Life cycle
@@ -99,10 +100,18 @@ final class SignUpViewController: UITextFieldsViewController {
             
             switch response.result {
             case .success(let result):
-                print(result)
+                logging(result)
+                Analytics.logEvent(AnalyticsEventSignUp, parameters: [
+                    AnalyticsParameterMethod: self?.method as Any,
+                    "username" : username
+                ])
                 
             case .failure(let error):
-                print(error)
+                logging(error.localizedDescription)
+                Analytics.logEvent("SignUpError", parameters: [
+                    AnalyticsParameterMethod: self?.method as Any,
+                    "username" : username
+                ])
             }
         }
         
