@@ -1,0 +1,37 @@
+{
+  "configurations" : [
+    {
+      "id" : "DEF55FB1-C7D8-4D97-9C16-BEADD5CF25A3",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:ShopApp.xcodeproj",
+          "identifier" : "FE82FFD9267E082D008DDA1E",
+          "name" : "ShopApp"
+        }
+      ]
+    },
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:ShopApp.xcodeproj",
+      "identifier" : "FE82FFD9267E082D008DDA1E",
+      "name" : "ShopApp"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:ShopApp.xcodeproj",
+        "identifier" : "FE82FFEF267E082E008DDA1E",
+        "name" : "ShopAppTests"
+      }
+    }
+  ],
+  "version" : 1
+}
