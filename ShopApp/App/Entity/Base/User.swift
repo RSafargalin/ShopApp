@@ -9,18 +9,22 @@ import Foundation
 
 protocol UserDataProtocol: Codable {
     
-    /// Имя пользователя
-    var name: String { get }
+    /// Логин пользователя
+    var username: String { get }
     /// Пароль
     var password: String { get }
+    /// Имя пользователя
+    var firstName: String { get }
+    /// Фамилия пользователя
+    var surname: String { get }
     /// Email
     var email: String { get }
     /// Пол пользователя
     var gender: Bool { get }
     /// Номер кредитной карты пользователя
     var creditCard: String { get }
-    /// Биография пользователя
-    var bio: String { get }
+    /// Корзина пользователя
+    var cart: [Int : Int] { get }
     
 }
 
@@ -33,23 +37,37 @@ protocol UserProtocol: UserDataProtocol {
 
 struct UserData: UserDataProtocol {
     
-    let name: String,
+    let username: String,
         password: String,
+        firstName: String,
+        surname: String,
         email: String,
         gender: Bool,
         creditCard: String,
-        bio: String
+        cart: [Int : Int]
     
 }
 
 struct User: UserProtocol {
     
+    // MARK: - Public variables
+    
     let id: Int,
-        name: String,
+        username: String,
         password: String,
+        firstName: String,
+        surname: String,
         email: String,
         gender: Bool,
         creditCard: String,
-        bio: String
+        cart: [Int : Int]
+    
+    var fullName: String {
+        get {
+            "\(firstName) \(surname)"
+        }
+    }
+    
+    // MARK: - Public methods
     
 }

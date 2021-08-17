@@ -8,12 +8,13 @@
 import Foundation
 
 struct ChangeQueryData: Codable {
-    let id: Int,
-        username: String,
-        password: String,
-        email: String,
-        gender: Bool,
-        creditCard: String,
-        bio: String
+    var id: Int,
+        username: String?,
+        password: String?,
+        firstName: String?,
+        surname: String?,
+        email: String?,
+        gender: Bool?,
+        creditCard: String?
 }
 
